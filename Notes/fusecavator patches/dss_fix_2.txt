@@ -1,0 +1,90 @@
+0202566C chosen bottom card 1 - A
+0202566D chosen top card, 1 - A
+02027910 current bot hl
+02027911 current top hl
+
+02025674 bottom cards, 1 byte each, 0/1
+0202567E top cards, 1 byte each 0/1
+
+02000050 character state 0x35 activating, 0x57 summon
+
+
+///////return to 0800E368
+
+
+menu exit hook:
+
+0800E360:
+
+old:
+mov r0,#0xB1
+lsl r0,r0,#0x2
+add r4,r6,r0
+add r0,r4,0
+
+new:
+ldr r1,[new_code_ptr]
+mov r15,r1
+const 08671D00 // new_code_ptr
+
+bytes: (0800E360)
+00 49 8F 46 00 1D 67 08
+
+
+
+
+08671D00:
+mov r0,#0xB1 // first 3 of replaced
+lsl r0,r0,#0x2
+add r4,r6,r0 // end first 3 of replaced
+
+// r4 is now start of dest copy
+// r5 is now start of source copy
+// r0-r3 usable without replace
+
+ldr r1,[char_state]
+ldrb r0,[r1]
+cmp r0,#0x35
+beq restrict_swap
+cmp r0,#0x57
+beq restrict_swap
+
+end_hook: (08671D12)
+ldr r2,[return address]
+add r0,r4,0x0 // last replaced
+mov r15,r2
+
+data1: (08671D18)
+char_state: (08671D18)
+02000050
+return address: (08671D1C)
+0800E368
+
+restrict_swap: (08671D20)
+mov r2,0x40
+ldrb r0,[r5,r2] // read hl bot card
+add r0,0x47
+ldrb r1,[r4,r0] // get card flag
+cmp r1,#0
+bne top_card
+ldrb r0,[r4,r2]
+strb r0,[r5,r2]
+
+top_card: (08671D30)
+mov r2,0x41
+ldrb r0,[r5,r2] // read hl top card
+add r0,0x51
+ldrb r1,[r4,r0] // get card flag
+cmp r1,#0
+bne end_hook
+ldrb r0,[r4,r2]
+strb r0,[r5,r2]
+b end_hook
+
+
+bytes:
+B1 20 80 00 34 18 04 49 08 78 35 28 08 D0 57 28
+06 D0 02 4A 20 1C 97 46 50 00 00 02 68 E3 00 08
+40 22 A8 5C 47 30 21 5C 00 29 01 D1 A0 5C A8 54
+41 22 A8 5C 51 30 21 5C 00 29 EA D1 A0 5C A8 54
+E7 E7

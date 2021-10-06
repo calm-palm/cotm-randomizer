@@ -1,0 +1,21 @@
+Created by fusecavator
+
+nop check that jump was pressed within frame window
+0806B148
+old: 1A DC
+new: C0 46
+
+force check for if dash boots picked up
+0806B160
+old: 02 D1
+new: 02 E0
+
+strat movement as run while in air
+0806B180
+old: 01 20
+new: 00 20
+
+start movement as run when transitioning from slide
+08063048
+old: 01 20
+new: 00 20

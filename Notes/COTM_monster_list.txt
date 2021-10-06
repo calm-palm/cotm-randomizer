@@ -1,0 +1,30 @@
+Skeleton Bomber: C6
+Bone Head: DA
+Bat: 0131
+Poison Worm: 0160
+Candle: 01DF 
+ For Holy Water: 00
+ For Axe: 01
+ For Knife: 02
+ For Cross: 03
+ For StopWatch: 04
+ For Small Heart: 05
+ For Big Heart: 06
+ Weird Graphics: 07 and above 
+Earth Demon: A1
+Boots: 01E8
+  For Speed Boots: 00
+  For Double Jump: 01
+  For Tackle: 02
+  For Kick boots: 03
+  For Heavy Ring: 04
+  Nothing: 05
+  For Cleansing: 06
+  For Roc Wing: 07
+  Nothing: 08 and above
+Beast Demon: A4
+Hippogriff: 0137
+Hopper: 0100
+Action cards: 41 - 4A?
+Attribute cards: 37 - 40?
+Heart Ex: 35

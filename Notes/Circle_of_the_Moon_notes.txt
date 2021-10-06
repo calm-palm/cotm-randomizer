@@ -1,0 +1,339 @@
+080C4216: Name rendering, default value is 3.
+
+08001712: Textbox load function.
+
+080003D2: Frame limiter.
+
+080003E0: Function for displaying stuff correctly
+
+080003E4: Nothing?
+
+080003E8: Renders UI stuff and objects.
+
+080003EC: Another function for rendering stuff correctly. Notably used to render text, HP/MP/heart counters, and the player.
+
+08060D34: Text rendering?
+
+080C31E0: Function chooser.
+
+08002C09:
+
+080BEAB0:
+
+080003C8: Nothing?
+
+0866C1B8: Static list of functions
+
+08002C74: 
+
+08001472: 
+
+08002FD4: 
+
+08060D34: Draws text
+
+08060C74:
+
+080C0300: Chooses which piece of text to render?
+
+0810C805: 
+
+080BF7BC: Multiplication
+
+02021670:
+
+020215F2: Shows whether start menu or attract mode is on.
+
+080BFE54: Something to do with save data?
+
+08004740: Controls distance travelled in cutscenes?
+
+0806ADD4: Controls whether or not Nathan can fall.
+
+02025664: Level
+
+0806D930: Function for assigning stats.
+
+08014114: Enemy AI routine
+
+0866C1B8: List of enemy AI pointers?
+
+08012870: Function for some enemy deaths
+
+080BEAF8: Function for rendering images in textboxes?
+
+08001738: 
+
+080068D8: 
+
+080BEAF8: Item collection?
+
+080BF34D: Card/Relic textboxes
+
+080BF455: Main major item textbox code? Softlocks the game if left early.
+
+080BF50D: Controls position of UI elements during major item textboxes.
+
+080BEE15: Handles text for major item pickup textboxes
+
+0806056D: Also important part of the item textbox code? Used for major item pickup textboxes. Softlocks if not executed.
+
+083A362C: Rendering objects?
+
+020231F8: Card type?
+
+080607A8: Assigns textbox for picking up major items.
+
+0202316E: Y coords
+
+0202316C: X coords
+
+020232FE: Nathan's state
+
+02023EEC: Level tiles
+
+08061F38: Code for initing level?
+
+0806364C: 
+
+08062078: Draws fancy borders around enemy/item names.
+
+080C2F20: Division.
+
+08000FBC: Loads UI and Nathan's graphics
+
+08000FCC: Loads UI and Nathan's sprites in motion.
+
+08000FAC: Used for drawing blank information boxes in menu?
+
+020202E2: Relative X coordinate of Skeleton Bomber
+
+080166A8:
+
+080D04BC: Position data?
+
+0802B46E: Loads position data?
+
+0802BEF4: 
+
+0802BF64:
+
+0802BF6E: Reads Skeleton Bomber's X coordinate
+
+0802BF76: Reads Skeleton Bomber's Y coordinate
+
+080D03F0, 080D03F2, 080D03FC, 080D03FE,
+
+080D04A4, 080D04A6, 080D04B0, 080D04B2, 080D04BC, 080D04BE, 080D04C8, 080D04CA, 080D04D4, 080D04D6, 080D04E0, 080D04E2, 080D04EC, 080D04EE, 080D04F8, 080D04FA:
+skeleton bomber positions in the first Catacomb room.
+
+080D0504: X coordinate of test enemy(originally a bone head in the lower left of the first Catacomb room)
+
+080D0506: Y coordinate of test enemy
+
+080D0508: ID of test enemy
+
+080D050A: Local variable of test enemy
+
+08014222: X coordinate of bat
+
+0801422A: Y coordinate of bat
+
+Big catacomb room with Earth Demon: 
+
+080D0960: One bat in catacomb room
+
+080D0A60: Door
+
+Big drop room:
+
+080D0270, 080D0272: First(?) Skeleton bomber
+
+0802BE64: Called to populate rooms with enemies?
+
+08001724:
+
+0803100D: Pointer to bone head's function.
+
+08031128: Reads bone head's X coordinate.
+
+08031130: Reads bone head's Y coordinate.
+
+08013C2C: Places objects in world
+
+02025646: Original STR of Nathan
+
+02025648: Original STR of Nathan, with boost from card combo.
+
+0202564A: Potential final STR with bonus?
+
+02027944: Nathan's inventory?
+
+0202570D: Number of Gambler Armbands
+
+02025715: Start of consumable numbers.
+
+0800DBDE: Equip code check
+
+081C466C:
+
+081077F0:
+
+080C0B1C: 
+
+02027910: 
+
+080E0970: List of stat boosts on equipment
+
+080E0998: Start of steel armor stat boosts
+
+080E099F: End of steel armor stat boosts
+
+0806DAE6: Loads card combo used?
+
+020274DD: Has card effect
+
+0202566C: Has Attribute card
+
+0202566D: Has Action card
+
+02027910: Stores Attribute card selected in the DSS menu
+
+02027912: Stores Action card selected in the DSS menu
+
+0800E41A: Moves attribute card selection to the left
+
+0800E44C: Moves attribute card selection to the right
+
+020279C8: Contains the card type selected.
+
+0800E3CC: Card menu display
+
+08012A94: Calculates chances for enemies to drop stuff?
+
+08529774: Random number stuff?
+
+08011970: Makes drops fall down
+
+08011898: Function to make items fall
+
+0805E88C: Determines DSS drops?
+
+0805E6EC: Function to determine DSS drops
+
+08001708: Scales and resizes damage numbers
+
+0202563A: MP of Nathan
+
+02025658: Actual INT of Nathan.
+
+0202E908: Stores actual STR while used against enemies?
+
+080057F8: Random number function?
+
+080CB7A6: HP of Bone Head
+
+080CB7A8: Offense of Bone Head
+
+080CB7AA: Defense of Bone Head
+
+080CB7AC: XP of Bone Head
+
+080CB7B0: Item 1 of Bone Head
+
+080CB7B2: Chance of Item 1 dropping
+
+080CB7B4: Item 2 of Bone Head
+
+080CB7B6: Chance of Item 2 dropping
+
+080D01F0: Common item drop for Bone Head?
+
+08013E3C: Loads drop to generate upon random chance succeeding?
+
+080C3824: Loads the right action card to drop?
+
+08001434: Stores object ids in real time
+
+080013BE: Clears out entity slots
+
+02025254: Location of the entity slot written to by the test enemy
+
+02025ED0: Location of the entity slot filled by a card
+
+0866E9AC: Pointer to card function
+
+080C37EA: Probably determines if rare drop is selected?
+
+08013E3C: Start of check for rare drop
+
+0805E6A8: Spawns non card items
+
+0801A378: Multi purpose function
+
+080D7D20: Location of Shining Armor
+
+08007EA8: Loads byte that determines loading object graphics?
+
+08013DD4: Checks if card or heart should be dropped
+
+08013DE2: Does the same thing as the function call above?
+
+0805FAEC: Renders card object?
+
+02005254: Entity slot occupied by test object in first Catacomb room. Filled by test object while entering from the bottom left entrance.
+
+0805EF1C: Loads item flags to set from pickups.
+
+0805F5DE: Checks if item flags are set, and loads room objects accordingly.
+
+02020C4C: Contains pointers to placed object flags
+
+0200526E: Gets set when item is collected.
+
+0202567E: Index for first Action card
+
+0805EA4E: Loads timer for cards
+
+0805F75E: Loads non enemy collectible object ids?
+
+Objects loaded in Salamander room:
+0A, 02, 0E, 02, 02, 0F, 1DF, 1E4
+
+080D0F94: Max Up to be replaced by Salamander
+
+080D12C4: Max Up to be replaced by Serpent
+
+080D07C0: Max Up to be replaced by Mercury
+
+080D1774: Max Up to be replaced by Venus
+
+080D1DE0: Max Up to be replaced by Mars
+
+080D2290: Max Up to be replaced by Jupiter
+
+080D3580: Max Up to be replaced by Cockatrice
+
+080D2A64: Max Up to be replaced by Golem
+
+080D3A90: Max Up to be replaced by Mandragora
+
+080D4294: Max Up to be replaced by Apollo
+
+080D4060: Max Up to be replaced by Manticore
+
+080D5944: Max Up to be replaced by Diana
+
+080D5E30: Max Up to be replaced by Griffin
+
+080D4D20: Max Up to be replaced by Saturn
+
+080D5050: Max Up to be replaced by Thunderbird
+
+080D65A4: Max Up to be replaced by Neptune
+
+080D673C: Max Up to be replaced by Unicorn
+
+080D6F64: Max Up to be replaced by Black Dog
+
+080D751C: Max Up to be replaced by Pluto

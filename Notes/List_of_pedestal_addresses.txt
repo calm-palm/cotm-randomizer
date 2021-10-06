@@ -1,0 +1,190 @@
+No requirements:
+
+C means confirmed
+S means said check is behind a statue
+
+C|080D0934: Vanilla dash boots
+C|080D1078: Heart max up in rightmost catacomb room
+C|080D12C4: Hidden MP max up accessible from second big room
+C|080D0F94: HP max up in right side of second big room
+C|080D0DA8: MP max up in left side of second big room
+C|080D1168: MP max up in upper catacombs room
+C|080D0C40: HP max up at end of long detour from upper catacombs room
+C|080D103C: Heart max up before Cerberus boss room
+C|080D07C0: MP max up before Cerberus boss room
+C|080D1288: Vanilla double jump
+
+Double jump:
+
+C|080D0370: MP max up in leftmost catacomb room
+C|080D1174: Heart max up in upper room
+C|080D12A0: Hidden HP max up accessible from room before Abyss Stairway
+C|080D181C: Hidden MP max up accessible on Abyss Stairway left
+C|080D1774: HP max up accessible on Abyss Stairway right
+C|080D17EC: Hidden heart max up accessible from large Abyss Stairway room
+C|080D2344: Hidden heart max up accessible from leftmost large Audience Hall room
+C|080D26D4: Hidden HP max up accessible from rightmost Triumph Hallway room
+C|080D1DE0: HP Max up accessible from big Audience Hall room past save point
+C|080D6DE4: Heart max up hidden in floor of first Outer Wall room
+C|080D2368: MP max up hidden near big Audience Hall room close to save point
+C|080D1BF4: Heart max up in big Audience Hall room past save point
+C|080D2158: MP max up in room connecting Audience Hall to Underground Sewers
+C|080D20BC: MP max up in hallway underneath Audience Hall room connected to Outer Wall and Arena
+C|080D2290: Heart max up in outer room of Audience Hall connected to lower chambers
+C|080D1FA8: MP max up in hidden room accessible from Audience Hall outer room
+C|080D238C: HP max up in hidden room accessible from lower Audience Hall room
+C|080D1E04: Vanilla tackle
+C|080D7690: Hidden max up in Ceremonial Room
+
+Wall kick:
+
+C|080D1084: HP max up in rightmost catacomb room
+C|080D1174: Heart max up in upper room
+C|080D181C: Hidden MP max up accessible on Abyss Stairway left
+C|080D1774: HP max up accessible on Abyss Stairway right
+
+Double jump + Wall kick:
+
+C|080D2284: Heart Max up accessible in outer room of Audience Hall connected to lower chambers
+C|080D44A4: HP Max up in rightmost Audience Hall room
+C|080D3580: MP max up in rightmost Mechanical Tower room
+C|080D3520: Hidden MP max up accessible from room right before Golem fight.
+C|080D283C: Vanilla wall kick
+C|080D3B50: Hidden heart max up near entrance to Underground Gallery
+C|080D3A90: Heart max up in room before Chapel
+C|080D3B98: Hidden HP max up accessible from left side of room before Chapel
+C|080D481C: Hidden MP max up to the left of the first upper Chapel room
+C|080D42A0: MP max up in left side detour from first upper Chapel room
+C|080D4294: Heart max up in left side detour from first upper Chapel room
+C|080D4330: Hidden MP max up to left of second upper room of Chapel
+C|080D47F8: Hidden HP max up to right of third upper room of Chapel
+C|080D3DA8: Heart max up in fourth upper room of Chapel
+C|080D47C8: Hidden HP max up to left of second bell tower area
+
+C|S|080D3CF4: MP max up behind Adramalech (behind button that unlocks statue switch)
+
+C|S|080D5944: Heart max up in first room of Underground Gallery
+C|S|080D5F98: Hidden heart max up accessible from left of first Underground Reservoir room
+C|S|080D697C: Hidden MP max up accessible from left of second Underground Reservoir room
+C|S|080D5FE0: Heart Max up on left side detour from second Underground Reservoir room
+C|S|080D5FEC: HP Max up on left side detour from second Underground Reservoir room
+C|S|080D65A4: HP Max up accessible on the right of third Underground Reservoir room
+C|S|080D640C: MP Max up in fourth Underground Reservoir room
+C|S|080D6418: Second MP max up in fourth Underground Reservoir room
+C|S|080D6730: Heart Max up in sixth Underground Reservoir room 
+C|S|080D673C: MP Max up in sixth Underground Reservoir room
+C|S|080D6940: Vanilla Roc Wing
+
+Double jump + wall kick + box push:
+
+C|080D4630: HP max up to left of first upper room of Chapel
+C|080D415C: HP max up to left of second upper room of Chapel
+C|S|080D5A1C: HP max up to right of first room of Underground Gallery
+C|S|080D5890: Max up to left of first room of Underground Gallery
+C|S|080D5F68: HP Max up at the end of second bottom right corridor in Underground Gallery
+C|S|080D5AB8: Hidden heart max up accessible from room at the end of second bottom left corridor in Underground Gallery
+C|S|080D5BD8: Hidden MP max up accessible from left of room exiting to Abyss Stairway
+C|S|080D5470: Vanilla box push
+
+Double jump + Wall kick + ice whip:
+
+C|080D4060: MP max up to right of first bell tower area
+C|S|080D6214: HP Max up in upwards detour from second Underground Reservoir room
+
+Double jump + wall kick + box push + tackle
+
+C|080D5410: Heart max up hidden in right side detour from downward vertical room in Underground Warehouse
+
+Double jump + ice whip:
+
+C|080D0364: HP max up in leftmost catacomb room
+C|080D6CE8: HP max up in second Outer Wall room
+
+Box push:
+
+C|080D0658: Heart Max up to the right of catacombs second room
+
+Double jump + Box push:
+
+C|080D1E1C: MP max up accessible from second big Audience Hall room
+C|080D48DC: MP Max up to right of first Underground Warehouse room
+
+Tackle:
+
+C|080D0DE4: MP Max up to the right of dash boots room
+
+Double jump + Tackle:
+
+C|080D1E58: HP max up accessible from second big audience hall room
+C|080D307C: Heart Max up in first Mechanical tower room
+C|080D32A4: HP Max up to side of first Mechanical tower room
+C|080D31FC: Hidden MP max up accessible from upper left of first Mechanical tower room
+C|080D3550: Hidden HP max up in right side detour from second Mechanical tower room
+C|080D2D88: Second hidden HP max up in right side detour from second Mechanical tower room
+C|080D2EC0: Hidden heart max up accessible from the left side of second Mechanical tower room
+C|080D2A64: Heart max up on left detour from third Mechanical Tower room
+C|080D3580: MP max up in rightmost Mechanical Tower room
+C|080D3520: Hidden MP max up accessible from room right before Golem fight.
+C|080D283C: Vanilla wall kick
+
+Double jump + tackle + box push:
+
+C|080D34E4: Max up in side path from corridor leading to Mechanical Tower
+C|080D4D20: Heart max up in second long room of Underground Warehouse
+C|080D4BA0: MP Max up in third long room of Underground Warehouse
+C|080D53EC: Hidden heart max up accessible from right of third long room of Underground Warehouse
+C|080D4EC4: Hidden max up accessible from right of downward vertical chamber in Underground Warehouse
+C|080D5050: HP Max up at the end of right side detour from vertical downward room in Underground Warehouse
+C|080D5344: Hidden MP max up accessible from lower room connected to save point
+C|080D4FC0: HP Max up in room before one way exit to Catacombs
+C|080D53B0: Vanilla Cleansing
+C|080D5434: Hidden HP max up past Cleansing room
+
+Double jump + tackle + wall kick
+
+C|080D3244: MP Max up accessible from upper right of first Mechanical tower room
+C|080D2F38: HP Max up accessible from left detour in second Mechanical tower room
+C|S|080D5E30: MP Max up at the end of first bottom right corridor in Underground Gallery
+C|S|080D5F68: HP Max up at the end of second bottom right corridor in Underground Gallery
+C|S|080D5AB8: Hidden heart max up accessible from room at the end of second bottom left corridor in Underground Gallery
+C|S|080D5BD8: Hidden MP max up accessible from left of room exiting to Abyss Stairway
+C|S|080D5470: Vanilla box push
+
+High jump:
+
+C|080D1678: HP max up in long abyss stairway room close to save point
+C|080D23C8: HP max up in the front area of the castle
+C|080D6BEC: MP max up in first Outer Wall room.
+C|080D214C: Heart max up in room linking Audience Hall to the Underground Sewers
+C|080D40F0: HP max up in bottom right Chapel room
+C|S|080D5698: HP Max up in second room of Underground Gallery
+C|S|080D56A4: Max up in second room of underground Gallery
+C|S|080D69A0: Hidden HP max up accessible from upwards of third room of Underground Reservoir
+C|080D673C: MP Max up in sixth Underground Reservoir room
+C|080D685C: Heart Max up in Underground Reservoir room before Carmilla
+C|080D69C4: Hidden HP max up accessible from Underground Reservoir room before Carmilla
+C|080D0310: Hidden HP max up accessible from first vertical room you fall through
+C|080D6940: Vanilla Roc Wing
+C|080D6A24: MP Max up in the topmost right room of Audience Hall
+C|080D6A30: Heart Max up in the topmost right room of Audience Hall
+C|080D6AC0: HP Max up in room leading to Arena
+C|080D6ACC: MP Max up in room leading to Arena
+C|080D760C: Hidden MP max up to left of first Observation Tower room
+C|080D6B38: HP Max up on right side detour from first Observation Tower room
+C|080D72E8: Heart Max up on upper right side detour from first Observation Tower room
+C|080D75E8: Hidden heart max up on left side of second Observation Tower room
+C|080D71EC: Hidden HP max up on right side of second Observation Tower room
+C|080D6FE8: MP Max up on left side detour from fourth Observation Tower room
+C|080D75C4: Hidden HP Max up on right side of sixth Observation Tower room
+C|080D6F64: Heart Max up on left side detour from sixth Observation Tower room
+C|080D751C: Hidden Heart max up in upper right side detour from sixth Observation Tower room
+C|080D6E20: Vanilla Last Key
+
+High jump + Tackle:
+
+C|080D3370: Heart max up in leftmost room of corridor leading to Mechanical Tower
+
+High jump + Tackle + Box push:
+
+C|080D4C84: Max up in downward vertical chamber in Underground Warehouse
+C|080D505C: Heart Max up at the end of right side detour from vertical downward room in Underground Warehouse

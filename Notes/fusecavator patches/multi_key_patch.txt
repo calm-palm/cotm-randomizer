@@ -1,0 +1,130 @@
+02025736 address of key flag
+
+
+add 1 to key instead of set to 1
+
+change jump address for switch statement to go to new code
+08095BA0:
+00 1F 67 08
+
+08671F00:
+ldr r0,[replaced]
+add r1, r4, r0
+ldrb r0,[r1]
+add r0,#1
+strb r0,[r1]
+ldr r0,[return]
+mov r15,r0
+00 00 // padding
+data (08671F10)
+replaced 000003CE
+return   08095BE4
+
+bytes(08671F00):
+03 48 21 18 08 78 01 30 08 70 02 48 87 46 00 00
+CE 03 00 00 E4 5B 09 08
+
+
+
+check for if drac door can be opened
+old:
+08096C1E:
+00 29 cmp r1,#0
+36 D1 bne 08096C90
+
+new:
+XX 29 cmp r1,#XX (XX is num keys needed)
+36 DA bge 08096C90
+
+
+
+change whether key shows in menu
+
+old:
+0800DFB4:
+00 28 cmp r0,#0
+0B D0 beq 0800DFD0
+
+new:
+XX 28 cmp r0,#XX (XX is num keys needed)
+0B DB blt 0800DFD0
+
+
+change menu text
+
+r9 is 02025368
+0800CB66 start overwriting here
+still need to set r6:
+ldr r6,[0800cc30] // normally at 0800CB86
+overwrite at least through 0800CB9C bl?
+
+
+
+r9+0x3CE points to keycount (0xF3 << 2 + 2)
+new: (0800CB66)
+ldr r6,[0800cc30] // original, moved
+ldr r0, [0800CB6C]
+mov r15,r0
+// address to branch to
+
+0800CB84
+mov r0,#XX // num required keys
+add r1,r6,0
+ldr r2,[0800CC34]
+bl 0800fd54 // display total needed keys amount
+
+mov r0,#0xF3 // construct number 0x3CE
+lsl r0,#0x2
+add r0,#0x2
+add r0,r9
+ldrb r0,[r0] // get collected keys
+add r1,r6,#0
+ldr r2,[0800CC38]
+bl 0800fd54 (at 0800CB9C, vanilla)
+
+0800CB66
+__ __ __ __ __ __ 32 4E 00 48 87 46 20 1F 67 08 // jump addr at end
+C0 46 C0 46 C0 46 C0 46 C0 46 C0 46 C0 46 C0 46
+C0 46 C0 46 XX 20 31 1C 2A 4A 03 F0 E3 F8 F3 20 // XX number of keys needed
+80 00 02 30 48 44 00 78 31 1C 27 4A
+
+
+adjust pointers to shift over 1 spot
+0800CC34
+F8 68 00 06
+F4 68 00 06
+
+
+08671F20
+mov r4,#0x18
+ldr r1,[dst_adr]
+ldr r2,[src_adr]
+loop_start: (08671F26)
+ldrh r0,[r2]
+strh r0,[r1]
+sub r4,#2
+add r2,#2
+add r1,#2
+cmp r4,#0
+bgt loop_start
+ldr r1,[ret_adr]
+mov r15,r1
+
+data (08671F38)
+060068E2 // start address of RATE
+08671F40 //address of next line's data
+FA 51 F9 51 39 51 5C 51 00 50 00 50 00 50 00 50 00 50 00 50 29 51 00 50
+0800CB84 return to (08671F58)
+
+bytes: (08671F20)
+18 24 05 49 05 4A 10 88 08 80 02 3C 02 32 02 31
+00 2C F8 DC 08 49 8F 46 E2 68 00 06 40 1F 67 08
+FA 51 F9 51 39 51 5C 51 00 50 00 50 00 50 00 50
+00 50 00 50 29 51 00 50 84 CB 00 08
+
+
+
+rando time key reqs:
+08096C1E patch byte
+0800DFB4 patch byte
+0800CB84 patch byte

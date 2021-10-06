@@ -1,0 +1,76 @@
+Enemy data struct: Element(2 bytes), HP(2 bytes), Offense(2 bytes), Defense(2 bytes), XP(4 bytes), Regular Item(2 bytes), Regular Item chance(2 bytes), 
+Rare Item(2 bytes), Rare Item chance(2 bytes)
+(Element bytes: 1: Fire resist, 2: Ice resist, 3: Plant resist, 4: Earth resist, 5: Stone resist, 6: Poison resist, 7: Wind resist, 8: Lightning resist,
+9: Holy resist, A: Dark resist, 10: Gives iframes and throws back Nathan)
+
+080CB2B8 is the start of monster data.
+
+Earth Demon drops:
+Regular: 080CB5A8, Magic Gauntlet(25)
+Rare: 080CB5AC, Serpent(38)
+Bone Head drops:
+Regular: 080CB7B0, Mercury(41)
+Rare: 080CB7B4, Heart(33)
+Grizzly drops:
+Regular: 080CB800, Strength Ring (19)
+Rare: 080CB804, Spiced Meat (2B)
+Arachne drops:
+Regular: 080CB9CC, Heart High(34)
+Rare: 080CB9D0, Heart Mega(36)
+Skeleton Bomber drops:
+Regular: 080CB350, Salamander(37)
+Rare: 080CB354, Potion(29)
+Skeleton Medalist drops:
+Regular: 080CBAF8, Toy Ring(27)
+Rare: 080CBAFC, Bear Ring(28)
+Skeleton drops:
+Regular: 080CB33C, Leather Armor (01)
+Rare: 080CB340, Potion(29)
+Skeleton Soldier drops:
+Regular: 080CB3A0, Leather Armor(01)
+Rare: 080CB3A4, Bronze Armor (02)
+Ectoplasm drops:
+Regular: 080CB42C, Wrist Band(22)
+Rare: 080CB430, Mind Restore(30)
+Zombie Thief drops:
+Regular: 080CB328, Prison Garb(12)
+Rare: 080CB32C, Luck Ring(1C)
+Skeleton Knight drops:
+Regular: 080CB3B4, Leather Armor(01)
+Rare: 080CB3B8, Bronze Armor(02)
+Heat Shade drops:
+Regular: 080CB698, Stylish Suit(13)
+Rare: 080CB69C, Jupiter (43)
+Thunder Demon drops:
+Regular: 080CB544, Magic Gauntlet(25)
+Rare: 080CB548, Manticore(3C) 
+Slime drops:
+Regular: 080CB670, Antidote(2E)
+Rare: 080CB674, Venus(42)
+Stone Armor drops:
+Regular: 080CB508, Hard Ring(1A)
+Rare: 080CB50C, Cockatrice(3B)
+Scary Candle drops:
+Regular: 080CBD64, Heart Ex(35)
+Rare: 080CBD68, Uranus(49)
+Imp drops:
+Regular: 080CB634, Salamander(37)
+Rare: 080CB638, Spiced Meat(2B)
+Axe Armor drops:
+Regular: 080CB454, Leather Armor(01)
+Rare: 080CB458, Mandragora(39)
+Electric Skeleton drops:
+Regular: 080CB364, Leather Armor(01)
+Rare: 080CB368, Golem(3A)
+Skeleton Athlete drops:
+Regular: 080CB5F8, Cotton Clothes(11)
+Rare: 080CB5FC, Griffin(3D)
+Ice Armor drops:
+Regular: 080CB490, Steel Armor(05)
+Rare: 080CB494, Neptune(47)
+Holy Armor drops:
+Regular: 080CB530, Serpent(38)
+Rare: 080CB534, Platinum Armor(06)
+Succubus drops:
+Regular: 080CB88C, (1B)
+Rare: 080CB890, Manticore(3C)

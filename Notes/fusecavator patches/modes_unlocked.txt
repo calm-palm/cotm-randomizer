@@ -1,0 +1,28 @@
+force jump that's checking if the mode has been unlocked at end of name entry
+
+0800BFDE:
+
+old:
+bne 0800BFE8
+
+new:
+b 0800BFE8
+
+bytes:
+03 E0
+
+
+
+
+make all names show on data select screen. (bit flags which get right shifted 1 to 4 bits, then and'ed with 1)
+
+08009F92:
+
+old:
+ldrb r3,[r0]
+
+new:
+mov r3,#0x1E
+
+bytes:
+1E 23

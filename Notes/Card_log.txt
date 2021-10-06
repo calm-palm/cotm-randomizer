@@ -1,0 +1,145 @@
+mov r0, r8
+mov r1, r9
+mov r2, r5
+bl 805EBB8h
+r0 = 00CD8000, r1 = 01538000, r2 = 0000000A
+805EBB8:
+push r4-r6, r14
+mov r5, r0
+mov r6, r1
+lsl r2, r2, 10h
+lsr r4, r2, 10h
+ldr r0, = 2025FF0h
+mov r1, 0C4h
+lsl r1, r1, 5h
+add r0, r0, r1
+ldr r0, [r0]
+mov r1, 0F3h
+lsl r1, r1, 1h
+bl 805FAECh
+mov r1, r0
+cmp r1, 0h
+beq 805EBECh (False)
+add r0, 4Ch
+str r5, [r1, 4Ch]
+str r6, [r0, 4h]
+str r4, [r0, 8h]
+mov r0, r1
+b 805EBEEh
+pop r4 - r6
+pop r1
+bx r1
+805FAEC:
+push r4, r14
+mov r2, r0
+ldr r4, = 20279E0h
+mov r3, 0h
+ldsh r0, [r4, r3]
+cmp r0, 0h
+ble 805FB1Ch (False)
+mov r0, r2
+bl 8001480
+mov r1, r0
+cmp r1, 0h
+beq 805FB1Ch (False)
+ldrh r0, [r4]
+sub r0, 1h
+strh r0, [r4]
+ldr r0, = 805FBCDh
+str r0, [r1, 24h]
+mov r0, r1
+b 805FB1Eh
+pop r4
+pop r1
+bx r1
+8001480:
+push r4, r5, r14
+mov r4, r0
+mov r5, r1
+mov r0, r5
+bl 800141Ch
+mov r2, r0
+cmp r2, 0h
+beq 80014B6h (False)
+ldr r0, = 3FFFh
+and r5, r0
+ldr r0, = 0FFFFh
+strh r0, [r2, 22h]
+cmp r4, 0h
+beq 80014A6h (False)
+str r4, [r2, 28h]
+ldr r0, [r4, 30h]
+str r0, [r2, 2Ch]
+str r2, [r4, 30h]
+ldr r0, = 8002D7Dh
+str r0, [r2, 24h]
+lsl r1, r5, 1h
+ldr r0, 202574Eh
+add r1, r1, r0
+ldrh r0, [r1]
+add r0, 1h
+strh r0, [r1]
+mov r0, r2
+pop r4, r5
+pop r1
+bx r1
+800141C:
+push r4, r5, r14
+mov r5, r0
+ldr r0, = 8671C08h
+ldr r0, [r0]
+bl 80C31DCh
+mov r4, r0
+cmp r4, 0h
+beq 8001440h (False)
+mov r1, 0BCh
+bl 80C2E4Ch
+strh r5, [r4]
+mov r0, r4
+b 8001442h
+pop r4, r5
+pop r1
+bx r1
+80C31DC:
+bx r0
+r0 = 030007E9
+30007E9:
+ldr r0, = 2025B7Ch
+ldr r1, [r0]
+ldr r0, = 2025B78h
+ldr r0, [r0]
+cmp r1, r0
+bcs 3000822h (False)
+mov r2, r0
+Loop:
+mov r3, 0h
+ldsh r0, [r1, r3]
+cmp r0, 0h
+bne 300081Ch 
+add r1, 0BCh
+cmp r1, r2
+bcc 30007F6h
+When bne 300081Ch returns false, function continues
+ldr r2, = 2025B74h
+ldr r0, [r2]
+cmp r0, r1
+bhi 300080Ch (true)
+mov r0, r1
+b 3000824h
+bx r14
+80C2E4C:
+mov r2, r0
+mov r0, r1
+sub r1, 1h
+cmp r0, 0h
+beq 80C2E64h (False)
+mov r3, 0h
+Loop:
+strb r3, [r2]
+add r2, 1h
+mov r0, r1
+sub r1, 1h
+cmp r0, 0h
+bne 80C2E58h
+When bne 80C2E58h returns false, function continues
+bx r14

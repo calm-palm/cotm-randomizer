@@ -1,0 +1,61 @@
+pluto/griffin
+
+0202566C 7
+0202566D A
+
+checks for owned at:
+0806BC56
+0806BC68
+
+
+0806BC48:
+old:
+add r0,r3,r2
+ldrb r0,[r0] // read first card num
+add r0,r3,r0
+add r1,#0x3A
+
+new:
+ldr r6,[0806BC4C]
+mov r15,r6
+08672200
+
+bytes: (0806BC48)
+00 4E B7 46 00 22 67 08
+
+08672200:
+usable: r6
+r0 has top card number
+
+add r0,r3,r2 // first replaced
+
+ldrb r6,[r0]
+cmp r6,#0xA
+bne not_combo
+sub r6,r0,#1
+ldrb r6,[r6]
+cmp r6,#0x7
+bne not_combo
+
+// whitelist approved
+// r0-r3 get nuked instantly, no need to restore any
+
+ldr r0,[return_allow]
+mov r15,r0
+
+not_combo: 08672214
+ldrb r0,[r0] // last 3 replaced
+add r0,r3,r0
+add r1,#0x3A
+ldr r6,[return_vanilla]
+mov r15,r6
+
+return_allow: (08672220)
+0806BC6A
+return_vanilla: (08672224)
+0806BC50
+
+bytes: (08672200)
+98 18 06 78 0A 2E 05 D1 46 1E 36 78 07 2E 01 D1
+03 48 87 46 00 78 18 18 3A 31 02 4E B7 46 00 00
+6A BC 06 08 50 BC 06 08

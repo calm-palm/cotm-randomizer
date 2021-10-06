@@ -1,0 +1,15 @@
+0x08009F92:
+OLD: 03 78 (ldrb r3,[r0, #0x0])
+NEW: 1E 23 (mov r3,#0x1E)
+Allows displaying the gamemode option text.
+
+
+0x0800BFD2:
+OLD: 11 78 (ldrb r1,[r2,#0x0])
+NEW: 1E 21 (mov r1,#0x1E)
+Allows loading stats for different gamemodes.
+
+0x08009166:
+OLD: 29 D0 (beq to 0x080091BC)
+NEW: 00 00 (mov r0,r0 -- do nothing)
+Allows bypassing the intro crawl with start.

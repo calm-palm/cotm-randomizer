@@ -1,0 +1,11 @@
+02025388: Start of bytes for bosses defeated
+08007EA8 handles alternate enemy loading
+
+changing 080D7F18 to B3 makes the trick candle load ONLY after killing Cerberus, and seems to have no other side effects
+
+
+080D7F18 seems to be in the spot used to load enemy graphics
+
+As for the alternate enemy graphics loading branch, it loads its value at 0805F33A
+
+Changing 080D858C to B5 solves that

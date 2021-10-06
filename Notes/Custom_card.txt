@@ -1,0 +1,38 @@
+Start:
+0805F764
+
+Free space:
+08671C10
+
+Code replaced:
+
+mov r1, r0
+cmp r1, 0h
+beq 805F778h
+add r0, 0ACh
+
+New code:
+ldr r1, = 08671C11h
+bx r1
+ldrh r0, [r4]
+mov r1, 4Eh
+strh r0, [r2, r1]
+ldrh r0, [r4, 2h]
+mov r1, 52h
+strh r0, [r2, r1]
+ldrb r0, [r4, 6h]
+mov r1, 54h
+strh r0, [r2, r1]
+mov r0, r2
+mov r1, r2
+cmp r1, 0h
+bne 8671C36h
+ldr r1, = 805F779h
+bx r1
+add r0, 0ACh
+ldr r2, = 805F76Dh
+bx r2
+
+0805EA50:
+
+nop (Stops card timer from ticking down)

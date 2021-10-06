@@ -1,0 +1,4 @@
+very important line: 0805F6A8 loads objects into every room
+
+Including static objects like items on pedastals, doors, blocks
+Maybe enemies

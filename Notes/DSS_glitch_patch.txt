@@ -1,0 +1,54 @@
+Created by fusecavator
+
+0800731A
+start of trigger menu to open
+
+08007398
+jump here instead for the menu not to open
+
+free space 08671D00
+
+safe to use without restore:
+r0 r2 r3
+
+08671D00:
+ldr r2, [addr]
+ldrb r0, [r2]
+mov r3, 0x35
+cmp r0, r3
+bne not_activating
+ldr r0, [menu_blocked_return]
+mov r15, r0
+
+not_activating: (08671D0E)
+ldr r4, [lost_val]
+add r0, r5, r4
+ldr r2, [vanilla_ret]
+mov r15, r2
+
+addr: (08671D18)
+02000050
+menu_blocked_return: (08671D1C)
+08007398
+lost_val: (08671D20)
+000018C6
+vanilla_ret: (08671D24)
+0800731E
+
+bytes: (08671D00)
+05 4A 10 78 35 23 98 42 01 D1 04 48 87 46 04 4C
+28 19 04 4A 97 46 00 00 50 00 00 02 98 73 00 08
+C6 18 00 00 1E 73 00 08
+
+0800731A:
+mov r2, [08007384]
+mov r15, r2
+
+08007384:
+08671D00
+
+bytes: (0800731A)
+1A 4A 97 46
+
+bytes: (08007384)
+00 1D 67 08

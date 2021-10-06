@@ -1,0 +1,58 @@
+right justify start about 06006C66
+last char starts at 06006C78
+
+1D 51 for 0
+1E 51 for 1
+
+10 digits max needed
+06006C66 start of most sig digit
+37 50 38 50 39 50 3A 50 3B 50 3C 50 3D 50 3E 50 3F 50 40 50
+(is normal there)
+
+bl call at 0800C9A4 decompresses into 06 mem, but hook later after all decomp is done.
+old: (0800Ca20) // r2+r3 usable without replacing
+add r1,#0xFA
+mov r0, #1
+strb r0,[r1]
+mov r1,#0xB1
+
+new: (0800CA20)
+ldr r0,[0800CA24]
+mov r15,r0
+08672100 address_of_new
+
+bytes: (0800CA20)
+00 48 87 46 00 21 67 08
+
+08672100:
+add r1,#0xFA // first 3 replaced
+mov r0, #1
+strb r0,[r1]
+
+ldr r2,[seed_adr]
+ldr r1,[dst_adr]
+mov r3,#0xA
+loop_start: (0867210C)
+ldrh r0,[r2]
+strh r0,[r1]
+sub r3,#1
+add r2,#2
+add r1,#2
+cmp r3,#0
+bgt loop_start
+
+ldr r0,[return_to]
+mov r1,#0xB1 // last replaced
+mov r15,r0
+
+data: (08672120)
+0867212C (seed_adr)
+06006C66 (dst_adr)(loc 08672124)
+0800CA28 (return to)(loc 08672128)
+seed_chars (0x14 bytes)(loc 0867212C)
+
+bytes: (08672100)
+FA 31 01 20 08 70 06 4A 06 49 0A 23 10 88 08 80
+01 3B 02 32 02 31 00 2B F8 DC 03 48 B1 21 87 46
+2C 21 67 08 66 6C 00 06 28 CA 00 08 37 50 38 50
+39 50 3A 50 3B 50 3C 50 3D 50 3E 50 3F 50 40 50

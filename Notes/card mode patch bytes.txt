@@ -1,0 +1,64 @@
+Card Mode:
+
+05 EA 50: patch with C0 46
+05 F7 64: patch with 00 49 08 47 C1 87 67 08
+0C B3 50: patch with 2A
+0C B3 68: patch with 2A
+0C B4 58: patch with 2B
+0C B4 6C: 2A
+0C b4 94: 2B
+0C B5 0C: 2A
+0C b5 30: 2B
+0C B5 48: 2A
+0C B5 84: 2A
+0C b5 AC: 2B
+OC b5 d4: 2A
+0c b5 fc: 2A
+0c b6 20: 2a
+0c b6 34: 2A
+0c b6 74: 2b
+oc b6 9c: 2a
+0c b7 10: 2a
+0c b7 8c: 2a
+0c b7 b0: 2b
+0c b8 40: 2a
+0c b8 90: 2B
+0c b8 a4: 2a
+0c b8 e0: 2B
+0c b9 68: 08 00 D0 07 0B 00 E8 03
+0C B9 E4: 2B
+0C BA 48: 2A
+0C BA 84: 2B
+0C BB 88: 2b
+0c BB c0: 2A
+0C BB D8: 2B
+0c bc 50: 2b
+0c bc 9c: 2a
+0c bc c8: 2b
+0c bd 14: 2B 00 FA 00 2C
+0C BD 3C: 2B 00 FA 00 2C
+
+0C BD 68: 2b
+0c bd 7c: 2B
+
+0d 07 c0: E6 01 0A
+0d 0f 94: e6 01 00
+0d 12 c4: e6 01 01
+0d 17 74: e6 01 0b
+0d 1d e0: e6 01 0d
+0D 22 90: E6 01 0C
+0D 2A 64: E6 01 03
+0D 35 80: E6 01 04
+0D 3A 90: E6 01 02
+0D 40 60: E6 01 05
+0D 42 94: E6 01 0F
+0D 4D 20: E6 01 11
+0D 50 50: E6 01 07
+0D 59 44: E6 01 0E
+0D 5E 30: E6 01 06
+0D 65 A4: E6 01 10
+0D 67 3C: E6 01 08
+0D 6F 64: E6 01 09
+0D 75 1C: E6 01 13
+0D 7D 20: E6 01 12
+67 87 C0: 0B 49 A0 79 09 5C 01 29 08 D0 20 88 4E 21 50 52 60 88 52 21 50 52 A0 79 54 21 50 52 10 1C 11 1C 00 29 01 D1 03 49 08 47 AC 30 03 4A 10 47 00 00 74 56 02 02 79 F7 05 08 6D F7 05 08
