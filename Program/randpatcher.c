@@ -34,7 +34,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
     if(applyIPS(rom, IPS_AUTODASHBOOTS) || applyIPS(rom, IPS_CARDMODE) || applyIPS(rom, IPS_NODSSDROPS)
     || applyIPS(rom, IPS_CARDCOMBOSREVEALED) ||  applyIPS(rom, IPS_CANDLEFIX) || applyIPS(rom, IPS_BLOCKFIX)
     || applyIPS(rom, IPS_MPCOMBOFIX) || applyIPS(rom, IPS_GAMECLEARBYPASS) || applyIPS(rom, IPS_MAPEDITS)
-    || applyIPS(rom, IPS_RANDOMIZER) == 1 || applyIPS(rom, IPS_DEMO_FORCE_FIRST) == 1)
+    || applyIPS(rom, IPS_RANDOMIZER) == 1 || applyIPS(rom, IPS_DEMO_FORCE_FIRST) == 1 || applyIPS(rom, IPS_ALLOW_ALWAYS_DROP) == 1)
     {
         printf("Failed to apply IPS.\n");
         return 1;

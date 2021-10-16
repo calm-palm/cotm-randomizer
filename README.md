@@ -1,4 +1,4 @@
-# Castlevania: Circle of the Moon Randomizer Beta 1
+# Castlevania: Circle of the Moon Randomizer Beta 1.1
 
 Reverse engineering and game program: DevAnj
 Optional patches: fusecavator
@@ -27,7 +27,7 @@ Note: Seeds are not shared between the website and the application releases.
 - Additionally, DSS cards will be randomly distributed on item pedestals instead of obtained via enemy drops. Enemy drops 
   are replaced with different drops, and drop rate is increased. Trivially easy enemies (worms, zombie variants, other low 
   HP/respawning enemies) will drop poor equipment and consumables. Other enemies will have a chance at any item that can be 
-  dropped by enemies in the base game except DSS cards. Boss enemies have a chance of dropping items that  are better than average, 
+  dropped by enemies in the base game except DSS cards. Boss enemies also are guaranteed to drop items that  are better than average, 
   and no chance of dropping poor items. The three "Candle" enemies will also drop powerful items.
 
 - There are also optional patches and rules with descriptions available in the optional patch menu and in the patch list below.
@@ -81,6 +81,11 @@ Steam guide article: https://steamcommunity.com/sharedfiles/filedetails/?id=2612
 
 
 # Patches:
+
+AllowAlwaysDrop.ips
+Used internally in the item randomizer to allow setting drop rate to 10000 (100%) and actually
+drop the item 100% of the time. Normally, it is hard capped at 50% for common drops and 25% for rare drops.
+Created by Fusecavator.
 
 AutoDashBoots.ips
 This patch grants Dash Boots on game initialization, effectively giving you Dash Boots from
@@ -182,6 +187,9 @@ Optional patch created by Fusecavator. Increases the Shooter gamemode base stren
 
 
 # Changes:
+
+Beta 1.1:
+  - Added patch and changed item randomizer logic to force bosses to drop a good item 100% of the time instead of being hard capped at 50%.
 
 Beta 1:
   - Added optional rule to halve the number of DSS cards placed.

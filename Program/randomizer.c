@@ -611,7 +611,6 @@ static bool populateKeyItem(int reachable[], int item_assignment[], int keyItems
         keyItems[eligible_keyitems[random_eligible_keyitem_choice]]++;
     }
 
-    //getchar();
     return hasIceOrStone;
 }
 
@@ -877,12 +876,15 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
         // Bosses
         else if (i == INDEX_ENEMY_CERBERUS || i == INDEX_ENEMY_NECROMANCER || i == INDEX_ENEMY_IRONGOLEM || i == INDEX_ENEMY_ADRAMELECH || i == INDEX_ENEMY_ZOMBIEDRAGON || i == INDEX_ENEMY_DEATH || i == INDEX_ENEMY_CAMILLA || i == INDEX_ENEMY_HUGH || i == INDEX_ENEMY_DRACULAI)
         {
-            // Select a random exclusive rare for every boss enemy for both common and rare drops
+            // Select a random exclusive rare for every boss enemy for common but not rare since we always drop the common
             regular_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
-            rare_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
+            //rare_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
+            rare_drops[i] = 0;
 
-            // Max out rare boss drops (we use 50%, but it's hard capped to 50% and 25% respectively regardless of drop rate)
-            regular_drop_chance[i] = rare_drop_chance[i] = 5000;
+            // Max out rare boss drops (normally, drops are hard capped to 50% and 25% respectively regardless of drop rate, but
+            // fusecavator's patch AllowAlwaysDrop.ips allows setting the regular item drop chance to 10000 to force a drop always)
+            regular_drop_chance[i] = 10000;
+            rare_drop_chance[i] = 0;
 
             // Note: We do not increment the placed item counters because we don't want to lock out certain items to boss fights
         }

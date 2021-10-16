@@ -53,6 +53,9 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 // Patch to make only the first demo play when on the title screen to avoid leaking info about items. Created by fuse.
 #define IPS_DEMO_FORCE_FIRST "ips/DemoForceFirst.ips"
 
+// Patch to allow setting 100% drop rate. Created by fuse.
+#define IPS_ALLOW_ALWAYS_DROP "ips/AllowAlwaysDrop.ips"
+
 // Optional patch created by Fusecavator. Permanent dash effect without double tapping.
 #define IPS_PERMANENTDASH "ips/PermanentDash.ips"
 

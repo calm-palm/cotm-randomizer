@@ -47,7 +47,7 @@ int main (int argc, char *argv[])
     }
 
     // Print a little credits line
-    printf("Castlevania: Circle of the Moon Randomizer Alpha\nReverse engineering and game program: DevAnj\nOptional patches: fusecavator\nRandomizer logic and patch program: spooky\nEmotional support: Circle of the Moon Speedrunning Discord @ https://discord.gg/Ae7Qjd5xDu\n");
+    printf("Castlevania: Circle of the Moon Randomizer\nReverse engineering and game program: DevAnj\nOptional patches: fusecavator\nRandomizer logic and patch program: spooky\nEmotional support: Circle of the Moon Speedrunning Discord @ https://discord.gg/Ae7Qjd5xDu\n");
     getchar();
 
     // First, copy the original ROM
