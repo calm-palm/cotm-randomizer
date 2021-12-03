@@ -1,4 +1,4 @@
-# Castlevania: Circle of the Moon Randomizer Beta 1.1
+# Castlevania: Circle of the Moon Randomizer Beta 1.2
 
 Reverse engineering and game program: DevAnj
 Optional patches: fusecavator
@@ -187,6 +187,9 @@ Optional patch created by Fusecavator. Increases the Shooter gamemode base stren
 
 
 # Changes:
+
+Beta 1.2:
+  - Minor logic change added to make duplicate successive boss drops less likely. 
 
 Beta 1.1:
   - Added patch and changed item randomizer logic to force bosses to drop a good item 100% of the time instead of being hard capped at 50%.

@@ -886,7 +886,8 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
             regular_drop_chance[i] = 10000;
             rare_drop_chance[i] = 0;
 
-            // Note: We do not increment the placed item counters because we don't want to lock out certain items to boss fights
+            // Note: We increment the placed item counters since bosses are now guaranteed to drop an item
+            placed_rare_items[getPlacedIndexFromID(regular_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
         }
         // Trivially easy enemies that can be easily farmed AND we are NOT using the hard mode option
         // OR
