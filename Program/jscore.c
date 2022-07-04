@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// This does not need compiled in when building to a standard native binary.//
+// This does not need to be included in a standard native binary build.     //
 // Similarly, main should not be compiled in with a js build.               //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,7 @@
 #include "randpatcher.h"
 
 const char* cotmr_core_version() {
-    return "beta-1-2";
+    return "beta-1-3";
 }
 
 // opt,id,type,shortName,Description,default

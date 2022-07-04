@@ -13,8 +13,7 @@ static int getRandomHighPriorityValidPedestal(int reachable[], int item_assignme
 static int getRandomUnplacedDSSCard(bool dssCards[]);
 
 static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regular_drop_chance[], int rare_drop_chance[], struct seed_options *options);
-static int getPlacedIndexFromID(int itemID, int dropList[], int dropsPlaced[], int number_drops);
-static int selectDrop(int dropList[], int dropsPlaced[], int number_drops);
+static int selectDrop(int dropList[], int dropsPlaced[], int number_drops, bool exclusiveDrop, bool randomItemHardmode);
 
 static void writeIPS(FILE* randomizer_patch, int item_assignment[], int regular_drops[], int rare_drops[], int regular_drop_chance[], int rare_drop_chance[], struct seed_options *options, FILE* spoiler_log);
 
@@ -863,6 +862,28 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
         INDEX_ITEM_USE_HEARTMEGA,
     };
 
+    // ADDED IN 1.3: Set boss and candle items first to prevent boss drop duplicates
+    // Note: If item hard mode is enabled, make these items exclusive to these enemies by adding an arbitrary integer larger than could be reached
+    // normally (e.g. the total number of enemies)
+    // Bosses
+    regular_drops[INDEX_ENEMY_CERBERUS] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_NECROMANCER] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_IRONGOLEM] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_ADRAMELECH] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_ZOMBIEDRAGON] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_DEATH] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_CAMILLA] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_HUGH] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_DRACULAI] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+
+    // Candles
+    regular_drops[INDEX_ENEMY_SCARYCANDLE] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    rare_drops[INDEX_ENEMY_SCARYCANDLE] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_TRICKCANDLE] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    rare_drops[INDEX_ENEMY_TRICKCANDLE] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    regular_drops[INDEX_ENEMY_MIMICCANDLE] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+    rare_drops[INDEX_ENEMY_MIMICCANDLE] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS, true, options->RandomItemHardMode);
+
     int i;
 
     for (i = 0; i < NUMBER_ENEMIES; i++)
@@ -873,12 +894,13 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
             regular_drops[i] = rare_drops[i] = INDEX_ITEM_BODY_SHINNINGARMOR;
             regular_drop_chance[i] = rare_drop_chance[i] = 5000;
         }   
-        // Bosses
+        // Set bosses' secondary item to none since we already set the primary item earlier
         else if (i == INDEX_ENEMY_CERBERUS || i == INDEX_ENEMY_NECROMANCER || i == INDEX_ENEMY_IRONGOLEM || i == INDEX_ENEMY_ADRAMELECH || i == INDEX_ENEMY_ZOMBIEDRAGON || i == INDEX_ENEMY_DEATH || i == INDEX_ENEMY_CAMILLA || i == INDEX_ENEMY_HUGH || i == INDEX_ENEMY_DRACULAI)
         {
-            // Select a random exclusive rare for every boss enemy for common but not rare since we always drop the common
-            regular_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
+            // REMOVED IN 1.3: Select a random exclusive rare for every boss enemy for common but not rare since we always drop the common
+            // regular_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
             //rare_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
+            // Set rare drop to none
             rare_drops[i] = 0;
 
             // Max out rare boss drops (normally, drops are hard capped to 50% and 25% respectively regardless of drop rate, but
@@ -886,8 +908,8 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
             regular_drop_chance[i] = 10000;
             rare_drop_chance[i] = 0;
 
-            // Note: We increment the placed item counters since bosses are now guaranteed to drop an item
-            placed_rare_items[getPlacedIndexFromID(regular_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
+            // REMOVED IN 1.3: We increment the placed item counters since bosses are now guaranteed to drop an item
+            // placed_rare_items[getPlacedIndexFromID(regular_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
         }
         // Trivially easy enemies that can be easily farmed AND we are NOT using the hard mode option
         // OR
@@ -959,65 +981,46 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
                 i == INDEX_ENEMY_BATTLEARENABLOODYSWORD ||
                 i == INDEX_ENEMY_BATTLEARENAEVILPILLAR)))
         {
-            regular_drops[i] = selectDrop(easy_items, placed_easy_items, NUMBER_EASY_ITEMS);
-            placed_easy_items[getPlacedIndexFromID(regular_drops[i], easy_items, placed_easy_items, NUMBER_EASY_ITEMS)]++;
-            rare_drops[i] = selectDrop(easy_items, placed_easy_items, NUMBER_EASY_ITEMS);
-            placed_easy_items[getPlacedIndexFromID(rare_drops[i], easy_items, placed_easy_items, NUMBER_EASY_ITEMS)]++;
+            regular_drops[i] = selectDrop(easy_items, placed_easy_items, NUMBER_EASY_ITEMS, false, options->RandomItemHardMode);
+            //placed_easy_items[getPlacedIndexFromID(regular_drops[i], easy_items, placed_easy_items, NUMBER_EASY_ITEMS)]++;
+            rare_drops[i] = selectDrop(easy_items, placed_easy_items, NUMBER_EASY_ITEMS, false, options->RandomItemHardMode);
+            //placed_easy_items[getPlacedIndexFromID(rare_drops[i], easy_items, placed_easy_items, NUMBER_EASY_ITEMS)]++;
             
             // Level 1 rate between 5-10% and rare between 3-8%
             regular_drop_chance[i] =  500 + (rand() % 501);
             rare_drop_chance[i] = 300 + (rand() % 501);
         }
         // It is a "Candle" enemy
-        else if (i == INDEX_ENEMY_MIMICCANDLE || i == INDEX_ENEMY_SCARYCANDLE || i == INDEX_ENEMY_TRICKCANDLE)
+        else if (i == INDEX_ENEMY_SCARYCANDLE || i == INDEX_ENEMY_TRICKCANDLE || i == INDEX_ENEMY_MIMICCANDLE)
         {
-            // Select a random exclusive rare for every candle enemy for both common and rare drops
-            regular_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
-            rare_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
+            // REMOVED IN 1.3: Select a random exclusive rare for every candle enemy for both common and rare drops
+            // regular_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
+            // rare_drops[i] = selectDrop(&rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS);
 
-            // Otherwise, set a regular drop chance between 5-10% and a rare drop chance between 3-5%
-            regular_drop_chance[i] = 500 + (rand() % 501);
-            rare_drop_chance[i] = 300 + (rand() % 201);
+            // Set a regular drop chance between 20-30% and a rare drop chance between 15-20%
+            regular_drop_chance[i] = 2000 + (rand() % 1001);
+            rare_drop_chance[i] = 1500 + (rand() % 501);
             
-            // Increment our counter for how many have been placed
-            placed_rare_items[getPlacedIndexFromID(regular_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
-            placed_rare_items[getPlacedIndexFromID(rare_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
+            // REMOVED IN 1.3: Increment our counter for how many have been placed
+            // placed_rare_items[getPlacedIndexFromID(regular_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
+            // placed_rare_items[getPlacedIndexFromID(rare_drops[i], &rare_items[NUMBER_COMMON_ITEMS], &placed_rare_items[NUMBER_COMMON_ITEMS], NUMBER_RARE_ITEMS)]++;
         }
         // Regular enemies
         else
         {
             // Select a random regular and rare drop for every enemy from their respective lists
-            regular_drops[i] = selectDrop(common_items, placed_common_items, NUMBER_COMMON_ITEMS);
-            rare_drops[i] = selectDrop(rare_items, placed_rare_items, NUMBER_COMMON_ITEMS + NUMBER_RARE_ITEMS);
+            regular_drops[i] = selectDrop(common_items, placed_common_items, NUMBER_COMMON_ITEMS, false, options->RandomItemHardMode);
+            rare_drops[i] = selectDrop(rare_items, placed_rare_items, NUMBER_COMMON_ITEMS + NUMBER_RARE_ITEMS, false, options->RandomItemHardMode);
 
             // Otherwise, set a regular drop chance between 5-10% and a rare drop chance between 3-5%
             regular_drop_chance[i] = 500 + (rand() % 501);
             rare_drop_chance[i] = 300 + (rand() % 201);
 
-            // Increment our counter for how many have been placed
-            placed_common_items[getPlacedIndexFromID(regular_drops[i], common_items, placed_common_items, NUMBER_COMMON_ITEMS)]++;
-            placed_rare_items[getPlacedIndexFromID(rare_drops[i], rare_items, placed_rare_items, NUMBER_COMMON_ITEMS + NUMBER_RARE_ITEMS)]++;
         }
     }
 }
 
-static int getPlacedIndexFromID(int itemID, int dropList[], int dropsPlaced[], int number_drops)
-{
-    int i;
-
-    for (i = 0; i < number_drops; i++)
-    {
-        if (itemID == dropList[i])
-        {
-            return i;
-        }
-    }
-
-    printf("Error: No index matching ID in drop table array.\n");
-    exit(1);
-}
-
-static int selectDrop(int dropList[], int dropsPlaced[], int number_drops)
+static int selectDrop(int dropList[], int dropsPlaced[], int number_drops, bool exclusiveDrop, bool randomItemHardmode)
 {
     int lowest_number;
     int number_valid_drops = 0;
@@ -1048,7 +1051,17 @@ static int selectDrop(int dropList[], int dropsPlaced[], int number_drops)
     }
     // Postcondition: Our array eligible_items has number_valid_drops many valid item indices as its elements
 
+    // Select a random valid item from the index of valid choices
     random_result = rand() % number_valid_drops;
+
+    // Increment the number of this item placed, unless it should be exclusive to the boss/candle, in which case
+    // set it to an arbitrarily large number to make it exclusive (use NUMBER_ENEMIES for simplicity)
+    if (randomItemHardmode && exclusiveDrop)
+        dropsPlaced[eligible_items[random_result]] += NUMBER_ENEMIES;
+    else
+        dropsPlaced[eligible_items[random_result]]++;
+    
+    // Return the item ID
     return dropList[eligible_items[random_result]];
 }
 

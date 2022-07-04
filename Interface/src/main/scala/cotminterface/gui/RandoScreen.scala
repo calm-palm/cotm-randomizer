@@ -50,7 +50,7 @@ object RandoScreen {
     def render(state: State) = <.div(
       <.h2("Circle of the Moon Randomizer"),
       <.br,
-      "Disclaimer: This page does not upload or download any data from the game. Any downloads are generated locally from a user-supplied source rom.",
+      "Disclaimer: This page does not upload or download any data from the game. Any downloads are generated locally from a user-supplied source rom. Full documentation is available here: https://github.com/calm-palm/cotm-randomizer",
       <.br, <.br,
       state.coreStatus.message,
       <.br, <.br,

@@ -119,7 +119,7 @@ static void displayMenu(struct seed_options *options)
     printf("[%d] 5. Set number of Last Keys required to open the door to the Ceremonial Room.\n", options->lastKeyRequired);
     printf("[%d] 6. Set number of Last Keys to be placed on pedestals.\n", options->lastKeyAvailable);
     printf("[%s] 7. Disable item randomization. Enemies will drop their default items.\n", options->doNotRandomizeItems ? checked : unchecked);
-    printf("[%s] 8. Random item hard mode. Enemies below 150 HP will drop poor items.\n", options->RandomItemHardMode ? checked : unchecked);
+    printf("[%s] 8. Random item hard mode. Enemies below 150 HP will drop poor items. Any rare items assigned to bosses or candles are exclusive to them.\n", options->RandomItemHardMode ? checked : unchecked);
     printf("[%s] 9. Select optional balance changes. Starred when any optional balance change is enabled.\n", (options->applyBuffFamiliars || options->applyBuffSubweapons || options->applyShooterStrength) ? checked : unchecked);
     printf("[%s] 10. Allow activating Pluto + Griffin (increased speed) even when the cards are not obtained.\n", options->applyAllowSpeedDash ? checked : unchecked);
     printf("[%s] 11. Halve the number of placed DSS cards. You will not be able to obtain all DSS cards. Cards could randomly be skewed to action or attribute.\n", options->halveDSSCards ? checked : unchecked);

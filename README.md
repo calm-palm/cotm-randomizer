@@ -1,4 +1,4 @@
-# Castlevania: Circle of the Moon Randomizer Beta 1.2
+# Castlevania: Circle of the Moon Randomizer Beta 1.3
 
 Reverse engineering and game program: DevAnj
 Optional patches: fusecavator
@@ -11,7 +11,7 @@ Note: Seeds are not shared between the website and the application releases.
 
 # What it does:
 
-- This will usually patch a US Castlevania: Circle of the Moon ROM to have a different key item layout. Critically,
+- This will patch a US Castlevania: Circle of the Moon ROM to have a different key item layout. Critically,
   the ability to freeze or petrify enemies with the combinations Mercury/Serpent, Mercury/Cockatrice, Mars/Serpent, 
   or Mars/Cockatrice is considered a progress item potentially requiring you to check a pedestal only accessible by
   using enemies as platforms. These include all pedestals accessible with Brain Floats, but also three miscellaneous 
@@ -49,10 +49,12 @@ Note: Seeds are not shared between the website and the application releases.
 
 0. Either use the default seed in "seed.txt" or edit this file and specify an unsigned integer of your choice to use as the seed.
 
-1. Drag your Castlevania: Circle of the Moon ROM onto rando.exe or run it with the following syntax: .\rando.exe <ROM Name>.gba
+1. Put your Castlevania: Circle of the Moon ROM into the same folder as the rando.exe executable. This is mandatory!
+
+2. Drag your Castlevania: Circle of the Moon ROM onto rando.exe or run it with the following syntax: .\rando.exe <ROM Name>.gba
    The original ROM will be copied to "cotm_randomized.gba" in the program folder, and this copy will be patched by the program.
 
-2. Select any optional patches or rules from the list using the corresponding numbers. Selected patches or rules will be marked with 
+3. Select any optional patches or rules from the list using the corresponding numbers. Selected patches or rules will be marked with 
    an asterisk. When you have made your decision, type 0 and then hit enter to proceed. 
    Warning: Changes to randomizer rules will change item placements even with the same seed, so be sure to remember your choices when saving or sharing seeds.
 
@@ -62,7 +64,7 @@ need to use the included full map of the game which contains the room IDs used i
 Note that Randomizer.ips includes only the randomizer item placements, and if you want to share this patch instead of your seed, you must also
 use all the other patches (and omit any optional patches you did not use). Be warned that the MultiLastKey optional rule cannot be shared by IPSes alone,
 since the numbers of keys required are patched dynamically by the program instead of via IPS. Additionally, the seed display patch obviously will not display
-the seed since it also relies on writing to the ROM at program execution time. It is simpler to share seeds and use the program over distributing sets of IPSes.
+the seed since it also relies on writing to the ROM at program execution time. It is simpler to share seeds and use the program or the website over distributing sets of IPSes.
 
 
 
@@ -76,6 +78,25 @@ If you wish to use this randomizer with the Advance Collection, follow my guide 
 
 Video tutorial: https://www.youtube.com/watch?v=azQY-fIwizY
 Steam guide article: https://steamcommunity.com/sharedfiles/filedetails/?id=2612394352
+
+
+
+
+# Optional rules:
+1. "Ignore Cleansing": Ignore Cleansing when placing magic items. You may be required to traverse Underground Waterway without Cleansing.
+2. "Auto Run": Enable permanent dash. You will always have the effect of Dash Boots applied without needing to double tap direction inputs
+3. "DSS Patch": Disable switching to DSS effects from unobtained cards. You will not be able to use the DSS glitch.
+4. "Break Iron Maidens": Break Iron Maidens from the beginning of the game. You will not be required to press the button.
+5. "Required Last Keys": Set number of Last Keys required to open the door to the Ceremonial Room.
+6. "Available Last Keys": Set number of Last Keys to be placed on pedestals.
+7. "Do Not Randomize Items": Disable item randomization. Enemies will drop their default items.
+8. "Random Item Hardmode": Random item hard mode. Enemies below 150 HP will drop poor items. Any rare items assigned to bosses or candles are exclusive to them.
+9. Optional balance changes:
+   a. "Buff Ranged Familiars": Doubles the damage dealt by projectiles fired by familiars.
+   b. "Buff SubWeapons": Increase regular and Shooter mode damage for some subweapons and corresponding item crush attacks (see BuffSubweapons.ips below for exact changes).
+   c. "Buff Shooter Strength": Increase the Shooter mode base strength and strength per level to match Vampirekiller.
+10. "Always Allow Speed Dash": Allow activating Pluto + Griffin (increased speed) even when the cards are not obtained.
+11. "Halve DSS Cards Placed": Halve the number of placed DSS cards. You will not be able to obtain all DSS cards. Cards could randomly be skewed to action or attribute.
 
 
 
@@ -183,10 +204,12 @@ Optional patch created by Fusecavator. Permanent dash effect without double tapp
 ShooterStrength.ips
 Optional patch created by Fusecavator. Increases the Shooter gamemode base strength and strength per level to match Vampirekiller.
 
-
-
-
 # Changes:
+
+Beta 1.3:
+  - Minor logic change added to set boss drops first, preventing bosses from having the same drop.
+  - Minor increase to "candle" type enemy drop rate.
+  - If random item hard mode is enabled, bosses now have one exclusive item from the rare items list and "candle" type enemies have two.
 
 Beta 1.2:
   - Minor logic change added to make duplicate successive boss drops less likely. 
