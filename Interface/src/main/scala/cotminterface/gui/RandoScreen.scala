@@ -1,8 +1,9 @@
 package cotminterface.gui
 
-import cotminterface.{CoreLoadLoading, CoreLoadStatus, CoreLoadSuccess, CoreLoadTimeout, RandOption, RandOptionBool, RandOptionSlider, RandOptions, RandoCore}
+import cotminterface.{CoreLoadLoading, CoreLoadStatus, CoreLoadSuccess, CoreLoadTimeout, PresetList, RandOption, RandOptionBool, RandOptionSlider, RandOptions, RandoCore, RomStorage, SimpleChecksum}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom
 
 import scala.scalajs.js.typedarray.{ArrayBuffer, Uint8Array}
 import org.scalajs.dom.{Blob, FileList, FileReader, URL, window}
@@ -12,9 +13,19 @@ import scala.util.Random
 
 object RandoScreen {
 
-  case class State(coreStatus: CoreLoadStatus, rom: Option[ArrayBuffer], seed: Int, opt: Vector[(Int, RandOption)], obj: Option[String], spoilObj: Option[String])
+  case class Props(initOpt: Option[String])
+  case class State(
+    coreStatus: CoreLoadStatus,
+    storageState: RomStorage.StorageState,
+    rom: Option[ArrayBuffer],
+    checksum: Int,
+    seed: Int,
+    opt: Vector[(Int, RandOption)],
+    obj: Option[String],
+    spoilObj: Option[String]
+  )
 
-  class Backend($: BackendScope[Unit, State]) {
+  class Backend($: BackendScope[Props, State]) {
 
     var core = Option.empty[RandoCore]
     var coreLoadTimer = Option.empty[Int]
@@ -34,7 +45,12 @@ object RandoScreen {
 
         val options = RandOptions.parse(c.options)
 
-        $.modState(_.copy(coreStatus = CoreLoadSuccess(c.version), opt = options)).runNow()
+       // $.modState(_.copy(coreStatus = CoreLoadSuccess(c.version), opt = options)).runNow()
+        $.modState{(s, p) =>
+          val initOptions = p.initOpt.map(io => RandOptions.updateFromUrlString(options, io)).getOrElse(options)
+          val initSeed = p.initOpt.map(io => parseSeedFromLink(io)).flatten.getOrElse(s.seed)
+          s.copy(coreStatus = CoreLoadSuccess(c.version), opt = initOptions, seed = initSeed)
+        }.runNow()
       }
       else {
         coreLoadAttempts += 1
@@ -47,7 +63,7 @@ object RandoScreen {
       }
     }
 
-    def render(state: State) = <.div(
+    def render(props: Props, state: State) = <.div(
       <.h2("Circle of the Moon Randomizer"),
       <.br,
       "Disclaimer: This page does not upload or download any data from the game. Any downloads are generated locally from a user-supplied source rom. Full documentation is available here: https://github.com/calm-palm/cotm-randomizer",
@@ -64,19 +80,64 @@ object RandoScreen {
           ^.multiple := false,
           ^.onChange ==> onChooseFile
         ),
+        TagMod(
+          <.br,
+          <.button(
+            ^.tpe := "button",
+            ^.onClick ==> doLoadFromLocal,
+            "Load From Local Storage"
+          )
+        ).when(state.storageState.showLoad),
         ^.onDragOver ==> {_.preventDefaultCB},
         ^.onDrop ==> onDrop
       ).when(state.coreStatus.isInstanceOf[CoreLoadSuccess] && state.rom.isEmpty),
       <.div(
-        "Loaded " + state.rom.map(_.byteLength).getOrElse(0) + " bytes",
+        if(state.checksum == SimpleChecksum.CORM_NTSC_U_CHECKSUM) {
+          "Rom loaded. Checksum valid"
+        } else {
+          TagMod(
+            "Unknown checksum: " + state.checksum,
+            <.br,
+            "The source rom might be corrupt"
+          )
+        },
+        TagMod(
+          <.br,
+          <.button(
+            ^.tpe := "button",
+            ^.onClick ==> doSaveToLocal,
+            "Save to Local Storage"
+          ),
+          <.br
+        ).when(state.storageState.showSave),
         <.br,
         "Seed: ",
-        <.input(^.onChange ==> onSeedChange, ^.value := Integer.toUnsignedString(state.seed)),
-        <.button(^.tpe := "button", ^.onClick ==> doNewSeed, "Roll New"),
+        <.input(^.onChange ==> onSeedChange, ^.value := Integer.toUnsignedString(state.seed), ^.disabled := props.initOpt.isDefined),
+        <.button(^.tpe := "button", ^.onClick ==> doNewSeed, "Roll New").when(props.initOpt.isEmpty),
         <.br,
+        TagMod(
+          <.br,
+          "Preset: ",
+          <.select(
+            ^.value := "ChoosePreset",
+            <.option(^.value := "ChoosePreset", "Choose Preset"),
+            PresetList.presets.map(p => <.option(^.value := p.name, p.name)).toTagMod,
+            ^.onChange ==> onPresetChange
+          ),
+          <.br,
+          <.br
+        ).when(props.initOpt.isEmpty),
         TagMod(state.opt.map{case (i, o) =>
-          OptionChoice(o, onOptCheck(i))
+          OptionChoice(o, onOptCheck(i), props.initOpt.isEmpty)
         }.flatten :_*),
+        <.br,
+        "Share Link: ",
+        {
+          val sl = buildShareLink(state.seed, state.opt.map(_._2))
+          <.a(^.href := sl, sl)
+        },
+        <.br,
+        <.br,
         <.button(
           ^.tpe := "button",
           ^.onClick ==> doRandomize,
@@ -97,7 +158,7 @@ object RandoScreen {
           ^.download := "cotm_" + Integer.toUnsignedString(state.seed) + "_spoilerlog.txt",
           "Spoiler log"
         )
-      }
+      }.when(props.initOpt.isEmpty)
     )
 
     def onChooseFile(e: ReactEventFromInput) = {
@@ -114,14 +175,33 @@ object RandoScreen {
       e.preventDefaultCB
     }
 
+    def doLoadFromLocal(e: ReactEventFromInput) = {
+      e.preventDefaultCB >>
+      $.modState{ s =>
+        val r = RomStorage.load
+        val c = r.map(SimpleChecksum.calculate(_)).getOrElse(0)
+        s.copy(rom = r, checksum = c)
+      }
+    }
+
     def doLoad(files: FileList): Unit = {
       if(files.length == 1) {
         val fr = new FileReader
         fr.onload = (_) => {
           val ab = fr.result.asInstanceOf[ArrayBuffer]
-          $.modState(_.copy(rom = Some(ab))).runNow()
+          val chk = SimpleChecksum.calculate(ab)
+          System.out.println("Checksum: " + chk.toString)
+          $.modState(_.copy(rom = Some(ab), checksum = chk, storageState = RomStorage.StorageReadFile)).runNow()
         }
         fr.readAsArrayBuffer(files(0))
+      }
+    }
+
+    def doSaveToLocal(e: ReactEventFromInput) = {
+      e.preventDefaultCB >>
+      $.modState{ s =>
+        s.rom.foreach(RomStorage.save(_))
+        s.copy(storageState = RomStorage.StorageSaved)
       }
     }
 
@@ -200,10 +280,51 @@ object RandoScreen {
         s.copy(opt = newOpt)
       }
     }
+
+    def buildShareLink(seed: Int, opt: Vector[RandOption]) = {
+      val loc = dom.window.location.href
+      val base = loc.takeWhile(_ != '?')
+
+      val seedPart = "seed=" + Integer.toUnsignedString(seed)
+
+      val optParts = opt.map(_.encodeUrl)
+
+      base + "?" + ((Vector(seedPart) ++ optParts).mkString("&"))
+    }
+
+    def parseSeedFromLink(optString: String) = {
+      optString.split("&").find(_.indexOf("seed=") == 0).map{ o =>
+        try {
+          Some(Integer.parseUnsignedInt(o.substring(5)))
+        }
+        catch {
+          case _: NumberFormatException => None
+        }
+      }.flatten
+    }
+
+    def onPresetChange(e: ReactEventFromInput) = {
+      val preset = PresetList.presets.find(_.name == e.target.value)
+
+      revokeSeed >>
+      $.modState{s =>
+        val newOpt = preset.map(p => RandOptions.updateFromPreset(s.opt, p)).getOrElse(RandOptions.resetToDefault(s.opt))
+        s.copy(opt = newOpt)
+      }
+    }
   }
 
-  val Comp = ScalaComponent.builder[Unit]
-    .initialState(State(CoreLoadLoading, None, 0, Vector.empty, None, None))
+  val Comp = ScalaComponent.builder[Props]
+    .initialState(State(
+      CoreLoadLoading,
+      if(RomStorage.exists) { RomStorage.StorageFound } else { RomStorage.StorageNotFound },
+      None,
+      0,
+      0,
+      Vector.empty,
+      None,
+      None
+    ))
     .renderBackend[Backend]
     .componentDidMount(_.backend.init)
     .build

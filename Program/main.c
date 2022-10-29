@@ -19,7 +19,7 @@ int main (int argc, char *argv[])
 
     char buffer[BUFFER_SIZE];
     size_t bytes_read;
-    
+
     unsigned int randomizer_seed;
 
     struct seed_options options = {
@@ -30,6 +30,8 @@ int main (int argc, char *argv[])
         false,
         1,
         1,
+        false,
+        false,
         false,
         false,
         false,

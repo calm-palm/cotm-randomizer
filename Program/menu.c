@@ -71,6 +71,14 @@ void optionMenu(struct seed_options *options)
         {
             options->halveDSSCards = !options->halveDSSCards;
         }
+        else if (selection == MENU_COUNTDOWN)
+        {
+            options->countdown = !options->countdown;
+        }
+        else if (selection == MENU_SUBWEAPONSHUFFLE)
+        {
+            options->subweaponShuffle = !options->subweaponShuffle;
+        }
     }
 
     // Flush the input buffer
@@ -123,6 +131,8 @@ static void displayMenu(struct seed_options *options)
     printf("[%s] 9. Select optional balance changes. Starred when any optional balance change is enabled.\n", (options->applyBuffFamiliars || options->applyBuffSubweapons || options->applyShooterStrength) ? checked : unchecked);
     printf("[%s] 10. Allow activating Pluto + Griffin (increased speed) even when the cards are not obtained.\n", options->applyAllowSpeedDash ? checked : unchecked);
     printf("[%s] 11. Halve the number of placed DSS cards. You will not be able to obtain all DSS cards. Cards could randomly be skewed to action or attribute.\n", options->halveDSSCards ? checked : unchecked);
+    printf("[%s] 12. Display a counter on the HUD showing the number of magic items and cards remaining in the current area.\n", options->countdown ? checked : unchecked);
+    printf("[%s] 13. Randomize which subweapon is in which subweapon location. The numbers of subweapons present in the original game are preserved. Subweapons are only placed in locations that already had a subweapon.\n", options->subweaponShuffle ? checked : unchecked);
 
     printf("\n>");
 }

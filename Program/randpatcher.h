@@ -26,8 +26,8 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 #define IPS_CARDCOMBOSREVEALED "ips/CardCombosRevealed.ips"
 
 // In lategame, the Trick Candle and Scary Candle load in the Cerberus and Iron Golem boss rooms after defeating
-// Camilla and Twin Dragon Zombies respectively. If the former bosses have not yet been cleared (i.e., we have 
-// sequence broken the game and returned to the earlier boss rooms to fight them), the candle enemies will cause 
+// Camilla and Twin Dragon Zombies respectively. If the former bosses have not yet been cleared (i.e., we have
+// sequence broken the game and returned to the earlier boss rooms to fight them), the candle enemies will cause
 // the bosses to fail to load and soft lock the game. This patches the candles to appear after the early
 // boss is completed instead. Created by DevAnj.
 #define IPS_CANDLEFIX "ips/CandleFix.ips"
@@ -82,3 +82,6 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 
 // Optional patch created by Fusecavator. Allows activating the Pluto + Griffin combo even without the cards obtained.
 #define IPS_SPEEDDASH "ips/AllowSpeedDash.ips"
+
+// Optional patch created by fuse. Adds an in-game counter showing the amount of remaining major items in your current area.
+#define IPS_COUNTDOWN "ips/Countdown.ips"

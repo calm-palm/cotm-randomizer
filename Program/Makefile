@@ -7,7 +7,7 @@ else
 	EXECUTABLE = rando
 endif
 
-OBJECTS = main.o menu.o ips.o randomizer.o randpatcher.o spoilertranslator.o
+OBJECTS = main.o menu.o ips.o randomizer.o randpatcher.o spoilertranslator.o countdown.o subweapon.o
 
 $(EXECUTABLE) : $(OBJECTS)
 	$(CC) -o $(EXECUTABLE) $(OBJECTS)
@@ -20,9 +20,13 @@ ips.o : ips.h
 
 randomizer.o : addresses.h options.h randomizer.h
 
-randpatcher.o : ips.h options.h randpatcher.h randomizer.h
+randpatcher.o : ips.h options.h randpatcher.h randomizer.h countdown.h subweapon.h
 
 spoilertranslator.o : spoilertranslator.h
+
+countdown.o : countdown.h game_structure.h
+
+subweapon.o : subweapon.h game_structure.h
 
 .PHONY: clean
 clean :

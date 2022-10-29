@@ -11,7 +11,7 @@ module.exports.plugins = (module.exports.plugins || []).concat([
   }),
   new AddAssetHtmlPlugin([
 	{filepath: require.resolve('./cotm_loadhook.js')},
-	//{filepath: require.resolve('./cotmrando_core.js')}
+	{filepath: require.resolve('./cotm_presets.js')},
 	{filepath: require.resolve('./cotmr_core.js')}
   ])
 ]);

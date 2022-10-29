@@ -11,7 +11,7 @@
 #include "randpatcher.h"
 
 const char* cotmr_core_version() {
-    return "beta-1-3";
+    return "beta-1-4";
 }
 
 // opt,id,type,shortName,Description,default
@@ -30,7 +30,9 @@ const char* cotmr_option_list() {
            "opt,9,bool,buffShooter,Buff Shooter Strength,0\n"
            "opt,10,bool,doNotRandomizeItems,Do Not Randomize Items,0\n"
            "opt,11,bool,randomItemHardMode,Random Item Hardmode,0\n"
-           "opt,12,bool,halveDSSCards,Halve DSS Cards Placed,0";
+           "opt,12,bool,halveDSSCards,Halve DSS Cards Placed,0\n"
+           "opt,13,bool,countdown,Countdown,0\n"
+           "opt,14,bool,subShuffle,Subweapon Shuffle,0";
 }
 
 static void set_option_val(struct seed_options *options, int opt, int val) {
@@ -74,6 +76,12 @@ static void set_option_val(struct seed_options *options, int opt, int val) {
         case 12:
             options->halveDSSCards = val;
             break;
+        case 13:
+            options->countdown = val;
+            break;
+        case 14:
+            options->subweaponShuffle = val;
+            break;
     }
 }
 
@@ -94,6 +102,8 @@ int cotmr_randomize(int seed, char* option_str) {
         false,
         false,
         false,
+        false,
+        false,
         false
     };
 
@@ -101,9 +111,9 @@ int cotmr_randomize(int seed, char* option_str) {
     while(param_pos != NULL) {
         int param_name, param_val;
         sscanf(param_pos, "%i=%i", &param_name, &param_val);
-        
+
         set_option_val(&options, param_name, param_val);
-        
+
         param_pos = strtok(NULL, ",");
     }
 
@@ -124,4 +134,3 @@ int cotmr_randomize(int seed, char* option_str) {
 
     return patch_success;
 }
-

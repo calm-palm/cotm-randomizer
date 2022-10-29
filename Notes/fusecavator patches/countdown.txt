@@ -1,0 +1,84 @@
+currently putting new data at address 0x08673000 for code, 0x08673400 for data
+
+we build the table at time of randomization.
+at the table start address, is 16 dwords, which are for the different areas, pointing to the area's flag list.
+at the pointed to location, each entry is 2 bytes, 0xFFFF is termination, picking flag numbers are as-is, and card pickup indexes have the highest bit set as an indicator.
+the separate case for cards is needed, as picking up a card does not set the normal pickup flag for the location.
+
+hook point is at 0x08062296
+this where the call printing the heart count returns to.
+R0-R4 get overwritten right away, so we're free to use them.
+
+The printing numbers call is 0x08000E98
+5 params
+1st seems to be always 1
+2nd is a pointer to what digit sprites to print. for hearts this is 0x080DD2DC + (heart_count * 6) to point to a spot for 3 digit display
+3rd is a pointer for where to print at
+4th is 2 times the amount of digits to print
+5th is always 0x10
+
+to get a 2 digit display, we use the same table, but multiply the display number by 10 first to push it left a digit, then only print the first 2
+
+new code:
+
+function to get current area:
+currently just reads 1 byte at 0x020253FC and returns it.
+bounds check ensures it's 0 - 0xF, otherwise returns 0xFF
+separated out in case we want special cases to consider a room a different area.
+the next byte 0x020253FD has an idex for the room within the area
+
+function to count flags:
+flag_list = table + (area << 2)
+counter = 0
+
+loop_top:
+entry = *flag_list
+if entry == 0xFFFF goto retn
+
+if (entry >> 0xF) != 0 goto card
+
+// at this point its an item pickup flag
+flag_chunk = *(dword*)(0x02025374 + ((entry >> 5) << 2))
+mask = 1 << (entry & 0x1F)
+
+if flag_chunk & mask goto item_picked_up
+
+counter++
+
+item_picked_up:
+flag_list += 2
+goto loop_top
+
+card:
+card_count = *(byte*)(0x02025674 + ((entry << 0x11) >> 0x11)) // bit shift to strip off indication bit
+
+if card_count != 0 goto card_picked_up
+
+counter++
+
+card_picked_up:
+flag_list += 2
+goto loop_top
+
+
+retn:
+return counter
+
+function main - this is where the hook goes to:
+call getArea
+if area == 0xF goto retn
+
+call count
+
+call print 1,0x080DD2DC + area * 60,0x06000098,4,0x10
+
+retn:
+
+replaced code:
+mov R1,0xB6
+lsl R1,R1,0x2
+add R5,R5,R1
+ldrb R1,[R5]
+lsl R1,R1,0x3
+
+return to 0x080622A0

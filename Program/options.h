@@ -17,6 +17,8 @@ struct seed_options {
     bool doNotRandomizeItems;
     bool RandomItemHardMode;
     bool halveDSSCards;
+    bool countdown;
+    bool subweaponShuffle;
 };
 
 #endif

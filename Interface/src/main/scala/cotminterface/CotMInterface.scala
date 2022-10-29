@@ -22,7 +22,15 @@ object CotMInterface {
     element.setAttribute("id", elementName)
     dom.document.body.insertBefore(element, dom.document.body.children(0))
 
-    RandoScreen.Comp() renderIntoDOM element
+    val paramString = dom.window.location.search
+    val initOpt = if(paramString.length > 1) {
+      Some(paramString.tail)
+    }
+    else {
+      None
+    }
+
+    RandoScreen.Comp(RandoScreen.Props(initOpt)) renderIntoDOM element
   }
 
   /*def checkLoaded: Unit = {

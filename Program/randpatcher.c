@@ -4,6 +4,8 @@
 #include "options.h"
 #include "randpatcher.h"
 #include "randomizer.h"
+#include "countdown.h"
+#include "subweapon.h"
 
 int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *options) {
     FILE *randomizer_patch;
@@ -24,7 +26,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
         printf("Error opening file %s.\nPress enter to close.\n", SPOILER_FILENAME);
         return 1;
     }
-    
+
     // Call special module for randomizer logic to create patch
     generateRandomizerPatch(randomizer_patch, randomizer_seed, options, spoiler_log);
     fclose(randomizer_patch);
@@ -54,7 +56,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
             printf("Failed to apply IPS.\n");
             return 1;
         }
-    
+
     if (options->breakIronMaidens)
         if (applyIPS(rom, IPS_IRONMAIDEN) == 1)
         {
@@ -116,6 +118,18 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
             printf("Failed to apply IPS.\n");
             return 1;
         }
+
+    if(options->countdown) {
+      if(applyIPS(rom, IPS_COUNTDOWN) == 1) {
+        printf("Failed to apply IPS.\n");
+        return 1;
+      }
+      patch_countdown(rom);
+    }
+
+    if(options->subweaponShuffle) {
+      subweapon_shuffle(rom, randomizer_seed);
+    }
 
     return 0;
 }
