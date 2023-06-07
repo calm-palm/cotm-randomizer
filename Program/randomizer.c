@@ -110,6 +110,7 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
     // No requirements
     reachable[INDEX_CATACOMB4]++;
     reachable[INDEX_CATACOMB8]++;
+    reachable[INDEX_CATACOMB9]++;
     reachable[INDEX_CATACOMB10]++;
     reachable[INDEX_CATACOMB13]++;
     reachable[INDEX_CATACOMB14]++;
@@ -148,7 +149,6 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
     if (rocOrKickBoots)
     {
         reachable[INDEX_CATACOMB8B]++;
-        reachable[INDEX_CATACOMB9]++;
     }
 
     // Heavy Ring
@@ -814,7 +814,7 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
         INDEX_ITEM_ARM_ARMGUARD,
         INDEX_ITEM_ARM_MAGICGAUNTLET,
         INDEX_ITEM_ARM_MIRACLEARMBAND,
-
+        INDEX_ITEM_ARM_BEARRING,
         INDEX_ITEM_ARM_TOYRING,
 
         // Consumables
@@ -848,8 +848,6 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
         INDEX_ITEM_ARM_DEFENSEARMBAND,
         INDEX_ITEM_ARM_SAGEARMBAND,
         INDEX_ITEM_ARM_GAMBLERARMBAND,
-
-        INDEX_ITEM_ARM_BEARRING,
 
         // Consumables
         INDEX_ITEM_USE_POTIONHIGH,

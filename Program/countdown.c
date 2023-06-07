@@ -30,19 +30,19 @@ void patch_countdown(FILE* rom) {
       fseek(rom, cur_room & 0xFFFFFF, SEEK_SET);
       fread(&cur_def, sizeof(struct room_def), 1, rom);
 
-      int next_entity_addr = cur_def.entity_list_off & 0xFFFFFF;
+      int next_entity_addr = cur_def.entity_list_offset & 0xFFFFFF;
       struct entity_entry cur_ent;
       fseek(rom, next_entity_addr, SEEK_SET);
       fread(&cur_ent, sizeof(struct entity_entry), 1, rom);
 
       // loop over entities within the room
       while(cur_ent.cntrl != (char)ENTITY_CNTRL_LIST_END) {
-        if(cur_ent.ent_tpe == ENTITY_TPE_MOVEMENT) {
+        if(cur_ent.entity_type == ENTITY_TPE_MOVEMENT) {
           fseek(rom, next_pos, SEEK_SET);
           fwrite(&(cur_ent.flag), 2, 1, rom);
           next_pos += 2;
         }
-        else if(cur_ent.ent_tpe == ENTITY_TPE_CARD && cur_ent.param >= 0 && cur_ent.param < 0x14) {
+        else if(cur_ent.entity_type == ENTITY_TPE_CARD && cur_ent.param >= 0 && cur_ent.param < 0x14) {
           short card_flag = cur_ent.param | 0x8000; // using high bit as a flag that it's a card
           fseek(rom, next_pos, SEEK_SET);
           fwrite(&card_flag, 2, 1, rom);

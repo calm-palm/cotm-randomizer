@@ -19,6 +19,7 @@ struct seed_options {
     bool halveDSSCards;
     bool countdown;
     bool subweaponShuffle;
+    bool noMPDrain;
 };
 
 #endif

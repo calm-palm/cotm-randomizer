@@ -7,9 +7,8 @@
 
 // Purely arbitrary choices as to which items are "common" or "rare", only defined to avoid magic number use
 #define NUMBER_EASY_ITEMS 9
-#define NUMBER_COMMON_ITEMS 32
-#define NUMBER_RARE_ITEMS 21
-
+#define NUMBER_COMMON_ITEMS 33
+#define NUMBER_RARE_ITEMS 20
 
 #include <stdbool.h>
 #include <stdio.h>

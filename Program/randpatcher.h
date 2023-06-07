@@ -85,3 +85,6 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 
 // Optional patch created by fuse. Adds an in-game counter showing the amount of remaining major items in your current area.
 #define IPS_COUNTDOWN "ips/Countdown.ips"
+
+// Optional patch created by Fusecavator. Disables the Battle Arena's MP drain effect.
+#define IPS_NOMPDRAIN "ips/NoMPDrain.ips"

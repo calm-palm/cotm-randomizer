@@ -56,14 +56,14 @@ void subweapon_shuffle(FILE* rom, unsigned int seed) {
       fseek(rom, cur_room & 0xFFFFFF, SEEK_SET);
       fread(&cur_def, sizeof(struct room_def), 1, rom);
 
-      int next_entity_addr = cur_def.entity_list_off & 0xFFFFFF;
+      int next_entity_addr = cur_def.entity_list_offset & 0xFFFFFF;
       struct entity_entry cur_ent;
       fseek(rom, next_entity_addr, SEEK_SET);
       fread(&cur_ent, sizeof(struct entity_entry), 1, rom);
 
       // loop over entities within the room
       while(cur_ent.cntrl != (char)ENTITY_CNTRL_LIST_END) {
-        if((cur_ent.ent_tpe == ENTITY_TPE_CANDLE || cur_ent.ent_tpe == ENTITY_TPE_CANDLECLOCKTOWER) &&
+        if((cur_ent.entity_type == ENTITY_TPE_CANDLE || cur_ent.entity_type == ENTITY_TPE_CANDLECLOCKTOWER) &&
            cur_ent.param >= ENTITY_CANDLE_HOLY_WATER &&
            cur_ent.param <= ENTITY_CANDLE_STOPWATCH) {
 

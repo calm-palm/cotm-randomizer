@@ -3,7 +3,7 @@ CFLAGS = -O1
 
 EXECUTABLE = cotmr_core.js
 
-OBJECTS = jscore.o ips.o randomizer.o randpatcher.o spoilertranslator.o countdown.o subweapon.o
+OBJECTS = jscore.o ips.o randomizer.o randpatcher.o spoilertranslator.o countdown.o subweapon.o entities.o graphicsfix.o
 
 $(EXECUTABLE) : $(OBJECTS)
 	$(CC) -o $(EXECUTABLE) $(OBJECTS) -s SINGLE_FILE -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap"]' -s FORCE_FILESYSTEM=1 -s EXPORTED_FUNCTIONS='["_cotmr_core_version", "_cotmr_option_list", "_cotmr_randomize", "_malloc", "_free"]' -s 'EXTRA_EXPORTED_RUNTIME_METHODS=["FS"]' --embed-file ips
@@ -14,13 +14,17 @@ ips.o : ips.h
 
 randomizer.o : addresses.h options.h randomizer.h spoilertranslator.h
 
-randpatcher.o : ips.h options.h randpatcher.h randomizer.h countdown.h subweapon.h
+randpatcher.o : ips.h options.h randpatcher.h randomizer.h countdown.h subweapon.h graphicsfix.h
 
 spoilertranslator.o : spoilertranslator.h
 
 countdown.o : countdown.h game_structure.h
 
 subweapon.o : subweapon.h game_structure.h
+
+entities.o : entities.h game_structure.h
+
+graphicsfix.o : graphicsfix.h entities.h
 
 .PHONY: clean
 clean :

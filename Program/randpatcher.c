@@ -6,6 +6,7 @@
 #include "randomizer.h"
 #include "countdown.h"
 #include "subweapon.h"
+#include "graphicsfix.h"
 
 int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *options) {
     FILE *randomizer_patch;
@@ -64,7 +65,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
             return 1;
         }
 
-    if(options->lastKeyRequired != 1) {
+    if (options->lastKeyRequired != 1) {
         if(applyIPS(rom, IPS_MULTILASTKEY) == 1) {
             printf("Failed to apply IPS.\n");
             return 1;
@@ -77,7 +78,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
         fwrite(&(options->lastKeyRequired), 1, 1, rom);
     }
 
-    if(applyIPS(rom, IPS_SEED_DISPLAY) == 1) {
+    if (applyIPS(rom, IPS_SEED_DISPLAY) == 1) {
         printf("Failed to apply IPS.\n");
         return 1;
     }
@@ -94,7 +95,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
         } while(remaining_seed);
     }
 
-    if(options->applyBuffFamiliars)
+    if (options->applyBuffFamiliars)
         if(applyIPS(rom, IPS_BUFF_FAMILIARS) == 1) {
             printf("Failed to apply IPS.\n");
             return 1;
@@ -113,23 +114,32 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
             return 1;
         }
 
-    if(options->applyAllowSpeedDash)
+    if (options->applyAllowSpeedDash)
         if(applyIPS(rom, IPS_ALLOW_SPEED_DASH) == 1) {
             printf("Failed to apply IPS.\n");
             return 1;
         }
 
-    if(options->countdown) {
-      if(applyIPS(rom, IPS_COUNTDOWN) == 1) {
-        printf("Failed to apply IPS.\n");
-        return 1;
-      }
-      patch_countdown(rom);
+    if (options->countdown) {
+        if (applyIPS(rom, IPS_COUNTDOWN) == 1) {
+            printf("Failed to apply IPS.\n");
+            return 1;
+        }
+        patch_countdown(rom);
     }
 
-    if(options->subweaponShuffle) {
+    if (options->subweaponShuffle) {
       subweapon_shuffle(rom, randomizer_seed);
     }
+
+    if (options->noMPDrain)
+        if (applyIPS(rom, IPS_NOMPDRAIN) == 1) {
+            printf("Failed to apply IPS.\n");
+            return 1;
+        }
+
+    // Fix Y-coordinates for magic items and max ups
+    graphicsFix(rom);
 
     return 0;
 }

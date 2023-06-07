@@ -11,7 +11,7 @@
 #include "randpatcher.h"
 
 const char* cotmr_core_version() {
-    return "beta-1-4";
+    return "1-0";
 }
 
 // opt,id,type,shortName,Description,default
@@ -32,7 +32,8 @@ const char* cotmr_option_list() {
            "opt,11,bool,randomItemHardMode,Random Item Hardmode,0\n"
            "opt,12,bool,halveDSSCards,Halve DSS Cards Placed,0\n"
            "opt,13,bool,countdown,Countdown,0\n"
-           "opt,14,bool,subShuffle,Subweapon Shuffle,0";
+           "opt,14,bool,subShuffle,Subweapon Shuffle,0\n"
+           "opt,15,bool,noMPDrain,Disable Battle Arena MP Drain,0\n";
 }
 
 static void set_option_val(struct seed_options *options, int opt, int val) {
@@ -82,6 +83,9 @@ static void set_option_val(struct seed_options *options, int opt, int val) {
         case 14:
             options->subweaponShuffle = val;
             break;
+        case 15:
+            options->noMPDrain = val;
+            break;
     }
 }
 
@@ -97,6 +101,7 @@ int cotmr_randomize(int seed, char* option_str) {
         false,
         1,
         1,
+        false,
         false,
         false,
         false,
