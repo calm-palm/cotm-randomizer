@@ -83,6 +83,10 @@ void optionMenu(struct seed_options *options)
         {
             options->noMPDrain = !options->noMPDrain;
         }
+        else if (selection == MENU_ALLBOSSES)
+        {
+            options->allBossesRequired = !options->allBossesRequired;
+        }
     }
 
     // Flush the input buffer
@@ -138,6 +142,7 @@ static void displayMenu(struct seed_options *options)
     printf("[%s] 12. Display a counter on the HUD showing the number of magic items and cards remaining in the current area.\n", options->countdown ? checked : unchecked);
     printf("[%s] 13. Randomize which subweapon is in which subweapon location. The numbers of subweapons present in the original game are preserved. Subweapons are only placed in locations that already had a subweapon.\n", options->subweaponShuffle ? checked : unchecked);
     printf("[%s] 14. Disable the Battle Arena's MP drain effect. You will be able to use DSS in the Battle Arena without MP restoring items.\n", options->noMPDrain ? checked : unchecked);
+    printf("[%s] 15. All bosses mode. A Last Key will be placed behind every boss except Dracula. All eight will be required. The other Last Key settings will be ignored.\n", options->allBossesRequired ? checked : unchecked);
 
     printf("\n>");
 }

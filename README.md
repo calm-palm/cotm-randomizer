@@ -1,4 +1,4 @@
-# Castlevania: Circle of the Moon Randomizer 1.0
+# Castlevania: Circle of the Moon Randomizer 1.1
 
 Reverse engineering and game program: DevAnj
 Optional patches: fusecavator
@@ -100,7 +100,7 @@ Steam guide article: https://steamcommunity.com/sharedfiles/filedetails/?id=2612
 12. "Countdown": Display a counter on the HUD showing the number of magic items and cards remaining in the current area.
 13. "Subweapon Shuffle": Randomize which subweapon is in which subweapon location. The numbers of subweapons present in the original game are preserved. Subweapons are only placed in locations that already had a subweapon.
 14. "No MP Drain":  Disable the Battle Arena's MP drain effect. You will be able to use DSS in the Battle Arena without MP restoring items.
-
+15. "All Bosses Required": A Last Key will be placed behind every boss except Dracula. All eight Last Keys will be required. The other Last Key settings will be ignored.
 
 
 # Patches:
@@ -216,9 +216,13 @@ Optional patch created by Fusecavator. Increases the Shooter gamemode base stren
 
 # Changes:
 
+1.1:
+  - Added an optional rule to require that all bosses be defeated. When enabled, the other Last Key settings are ignored, and a Last Key is placed behind every boss except Dracula.
+  - Added functionality to fix room settings to properly display magic items in some cases. Nonstandard rooms (e.g. containing Heavy Ring or Tackle blocks and other unknown conflicting graphics -- around half of rooms) will still have garbled graphics for magic items.
+
 1.0:
   - Altered the Y-coordinates of magic items placed on non-magic item pedestals and non-magic items placed on magic item pedestals to make them now appear to be at the right height.
-  - Fixed logic error that previously made kick boots required for the pedestal in Catacomb 9.
+  - Fixed logic error that previously made Kick Boots required for the pedestal in Catacomb 9.
   - The Bear Ring no longer appears in the boss drop pool.
   - An option has been added to apply the NoMPDrain patch (created by fusecavator) which disables the MP drain in the Battle Arena.
   - The presets on the randomizer website have been updated.

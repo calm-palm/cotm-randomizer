@@ -28,6 +28,13 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
         return 1;
     }
 
+    // If All Bosses Required is enabled, fix the Last Key counts
+    if (options->allBossesRequired)
+    {
+        options->lastKeyAvailable = 8;
+        options->lastKeyRequired = 8;
+    }
+
     // Call special module for randomizer logic to create patch
     generateRandomizerPatch(randomizer_patch, randomizer_seed, options, spoiler_log);
     fclose(randomizer_patch);

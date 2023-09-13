@@ -6,21 +6,21 @@ static bool isVanillaMagicItemPedestal(int area_index, int room_index, int entit
 
 void graphicsFix(FILE* rom)
 {
-    //struct room_def current_room;
+    struct room_def current_room;
     struct entity_entry current_entity;
 
     int area_index;
     int room_index;
     int entity_index;
 
-    //bool roomContainsMagicItem;
+    bool roomContainsMagicItem;
 
     for (area_index = 0; area_index < getAreaCount(); area_index++)
     {
         for (room_index = 0; room_index < getAreaRoomCount(rom, area_index); room_index++)
         {
-            //roomContainsMagicItem = false;
-            //current_room = getRoomFromIndices(rom, area_index, room_index);
+            roomContainsMagicItem = false;
+            current_room = getRoomFromIndices(rom, area_index, room_index);
 
             // Search for magic items in the room
             for (entity_index = 0; entity_index < getRoomEntityCount(rom, area_index, room_index); entity_index++)
@@ -29,7 +29,7 @@ void graphicsFix(FILE* rom)
 
                 if (current_entity.entity_type == ENTITY_TPE_MOVEMENT)
                 {
-                    //roomContainsMagicItem = true;
+                    roomContainsMagicItem = true;
 
                     //printf("DEBUG: %i %i %i has item %x.\n", area_index, room_index, entity_index, current_entity.param);
 
@@ -48,15 +48,19 @@ void graphicsFix(FILE* rom)
                 }
             }
 
-            //if (roomContainsMagicItem)
-            //{
+            if (roomContainsMagicItem)
+            {
                 // If a magic item was found, the room UNKNOWN must be changed to 0xA or the magic item's graphics will display incorrectly
                 // Note: Unfortunately this does not work properly for rooms that require displaying a different item that never appears in key
-                // item rooms like push blocks, so this is disabled for now and only the coordinates must be set.
-                //printf("DEBUG: Changing UNKNOWN for room %i %i from %x to 0xA.\n", area_index, room_index, current_room.unkn & 0xFFFF);
-                //current_room.unkn = ROOM_TYPE_MAGICITEM;
-                //setRoomFromIndices(rom, area_index, room_index, current_room);
-            //}
+                // item rooms like push blocks, so only the coordinates should be set in that case.
+                // If the room UNKNOWN is FFFF, it should be safe... maybe? Good luck everybody!
+                if ((current_room.unkn & 0xFFFF) == 0xFFFF)
+                {
+                    printf("Changing UNKNOWN for room %i %i from %x to 0xA.\n", area_index, room_index, current_room.unkn & 0xFFFF);
+                    current_room.unkn = ROOM_TYPE_MAGICITEM;
+                    setRoomFromIndices(rom, area_index, room_index, current_room);
+                }
+            }
         }
     }
 }

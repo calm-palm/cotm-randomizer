@@ -20,6 +20,7 @@ struct seed_options {
     bool countdown;
     bool subweaponShuffle;
     bool noMPDrain;
+    bool allBossesRequired;
 };
 
 #endif

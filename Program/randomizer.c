@@ -57,7 +57,20 @@ void generateRandomizerPatch(FILE* randomizer_patch, unsigned int randomizer_see
     // Also assume that we assign Shinning Armor to the Battle Arena pedestal
     item_assignment[INDEX_BATTLEARENA24] = INDEX_SPECIALITEM_SHINNINGARMOR;
 
-    // If the Last Key optional patch was enabled and keys required set to zero, count the key as already having been obtained
+    // If All Bosses Required is enabled, manually set the Last Key locations and fix the Last Key running total before placing any other items
+    if (options->allBossesRequired)
+    {
+        item_assignment[INDEX_CATACOMB24] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_AUDIENCE_ROOM25] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_MACHINE_TOWER19] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_CHAPEL_TOWER22] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_UNDERGROUND_GALLERY20] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_UNDERGROUND_WAREHOUSE23] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_UNDERGROUND_WATERWAY17] = INDEX_KEYITEM_LASTKEY;
+        item_assignment[INDEX_OBSERVATION_TOWER20] = INDEX_KEYITEM_LASTKEY;
+
+        keyItems[INDEX_KEYITEM_LASTKEY] = last_keys_count;
+    }
 
     printf("Initialized arrays and initial items.\n");
 
