@@ -33,7 +33,7 @@ const char* cotmr_option_list() {
            "opt,12,bool,halveDSSCards,Halve DSS Cards Placed,0\n"
            "opt,13,bool,countdown,Countdown,0\n"
            "opt,14,bool,subShuffle,Subweapon Shuffle,0\n"
-           "opt,15,bool,noMPDrain,Disable Battle Arena MP Drain,0\n";
+           "opt,15,bool,noMPDrain,Disable Battle Arena MP Drain,0\n"
            "opt,16,bool,allBosses,Require All Bosses,0\n";
 }
 
