@@ -8,6 +8,14 @@ Emotional support: Circle of the Moon Speedrunning Discord @ https://discord.gg/
 Try the randomizer online: https://rando.circleofthemoon.com/ 
 Note: Seeds are not shared between the website and the application releases.
 
+# Easy visual guide:
+
+Malaert64 and AmadeusJ have prepared a great PDF guide for the randomizer. Read it here: https://drive.google.com/file/d/1buC4JGgKBtFQksIw9FNqfhK3bKQO3RS8/view?usp=sharing
+
+It is a very useful resource for beginners to the game, and importantly, it contains a map that shows the area
+boundaries used by the countdown meter (they are not always intuitive: for example, the outdoor hallway with Obervation
+Tower music, the outdoor armory with all subweapons near Machine Tower with Audience Room music, and the Battle Arena entrance
+outdoor area with Chapel Tower music are all actually in the Outer Wall area).
 
 # What it does:
 
