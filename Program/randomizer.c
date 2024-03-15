@@ -170,13 +170,6 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
         reachable[INDEX_CATACOMB1]++;
     }
 
-    // Roc Wing OR Double, Kick Boots, and Ice/Stone
-    if (keyItems[INDEX_KEYITEM_ROCWING] || (keyItems[INDEX_KEYITEM_DOUBLE] && keyItems[INDEX_KEYITEM_KICKBOOTS] && hasIceOrStone))
-    {
-        reachable[INDEX_TRIUMPH_HALLWAY3]++;
-        reachable[INDEX_CHAPEL_TOWER1]++;
-    }
-
     // Roc Wing
     if (keyItems[INDEX_KEYITEM_ROCWING])
     {
@@ -289,6 +282,9 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
         reachable[INDEX_UNDERGROUND_WAREHOUSE8]++;
         reachable[INDEX_UNDERGROUND_WAREHOUSE9]++;
         reachable[INDEX_UNDERGROUND_WAREHOUSE11]++;
+
+        reachable[INDEX_UNDERGROUND_WAREHOUSE14]++;  // Double, NOT Kick Boots (can make it whout Double), Heavy Ring, and Tackle
+
         reachable[INDEX_UNDERGROUND_WAREHOUSE16]++;
         reachable[INDEX_UNDERGROUND_WAREHOUSE19]++;
         reachable[INDEX_UNDERGROUND_WAREHOUSE23]++;
@@ -355,11 +351,6 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
         reachable[INDEX_UNDERGROUND_GALLERY2]++;
     }
 
-    // Double, NOT Kick Boots (can make it whout Double), Heavy Ring, and Tackle
-    if (rocOrDouble && keyItems[INDEX_KEYITEM_HEAVYRING] && keyItems[INDEX_KEYITEM_TACKLE])
-    {
-        reachable[INDEX_UNDERGROUND_WAREHOUSE14]++;
-    }
 
     // Double and Kick Boots OR Double and Tackle
     if ((rocOrDouble && rocOrKickBoots) || (rocOrDouble && keyItems[INDEX_KEYITEM_TACKLE]))
@@ -387,6 +378,9 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
     // Double, Kick Boots, and Ice/Stone OR Roc Wing
     if ((rocOrDouble && rocOrKickBoots && hasIceOrStone) || keyItems[INDEX_KEYITEM_ROCWING])
     {
+        reachable[INDEX_TRIUMPH_HALLWAY3]++;
+        reachable[INDEX_CHAPEL_TOWER1]++;
+
         reachable[INDEX_CHAPEL_TOWER13]++;
     }
 
