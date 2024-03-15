@@ -227,7 +227,8 @@ Optional patch created by Fusecavator. Increases the Shooter gamemode base stren
 1.1:
   - Added an optional rule to require that all bosses be defeated. When enabled, the other Last Key settings are ignored, and a Last Key is placed behind every boss except Dracula.
   - Added functionality to fix room settings to properly display magic items in some cases. Nonstandard rooms (e.g. containing Heavy Ring or Tackle blocks and other unknown conflicting graphics -- around half of rooms) will still have garbled graphics for magic items.
-  - Fixed the duplicate "OT8" entry on the map thanks to a tip from Liquid Cat.
+  - Fixed the duplicate "OT8" entry on the map and a logic error preventing item placement in EC7. Discovered by Liquid Cat.
+  - Fixed an error in logic that would prevent an item from being placed in EC
 
 1.0:
   - Altered the Y-coordinates of magic items placed on non-magic item pedestals and non-magic items placed on magic item pedestals to make them now appear to be at the right height.
