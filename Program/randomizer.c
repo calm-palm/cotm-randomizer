@@ -729,7 +729,7 @@ static int getRandomUnplacedDSSCard(bool dssCards[])
 static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regular_drop_chance[], int rare_drop_chance[], struct seed_options *options)
 {
     int placed_easy_items[NUMBER_EASY_ITEMS] = { 0 };
-    int placed_common_items[NUMBER_COMMON_ITEMS] = { 0 };
+    int placed__items[NUMBER_COMMON_ITEMS] = { 0 };
     int placed_rare_items[NUMBER_COMMON_ITEMS + NUMBER_RARE_ITEMS] = { 0 };
 
     int easy_items[NUMBER_EASY_ITEMS] =
@@ -775,7 +775,7 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
         INDEX_ITEM_ARM_ARMGUARD,
         INDEX_ITEM_ARM_MAGICGAUNTLET,
         INDEX_ITEM_ARM_MIRACLEARMBAND,
-
+        INDEX_ITEM_ARM_BEARRING,
         INDEX_ITEM_ARM_TOYRING,
 
         // Consumables
