@@ -289,9 +289,9 @@ static void findAllItemsReachable(int reachable[], int keyItems[], bool hasIceOr
         reachable[INDEX_UNDERGROUND_WAREHOUSE25]++;
     }
 
-    if (rocOrDouble && keyItems[INDEX_KEYITEM_TACKLE] && keyItems[INDEX_KEYITEM_HEAVYRING] && hasIceOrStone)
+    if (rocOrDouble && keyItems[INDEX_KEYITEM_TACKLE] && keyItems[INDEX_KEYITEM_HEAVYRING] && (keyItems[INDEX_KEYITEM_ROCWING] || hasIceOrStone))
     {
-        reachable[INDEX_UNDERGROUND_WAREHOUSE14]++; // If you solved the puzzle before checking this spot, it is no longer reachable without ice or stone
+        reachable[INDEX_UNDERGROUND_WAREHOUSE14]++; // If you solved the puzzle before checking this spot, it is no longer reachable without ice or stone or Roc Wing
     }
 
     // Double and Iron Maiden
