@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O2 -Wall
+CFLAGS = -O2 -Wall -Wunused -Wextra
 
 ifeq ($(OS), Windows_NT)
 	EXECUTABLE = rando.exe

@@ -31,6 +31,8 @@ outdoor area with Chapel Tower music are all actually in the Outer Wall area).
     - Underground Gallery's Harpy room has two pedestals accessible by freezing or petrifying the Harpy and then jumping
       to the first one, and then either freezing or petrifying the Harpy again or kicking off the wall to reach the higher
       pedestal guarded by one Lizard Man.
+    - If you choose to solve the puzzle in UW14 before checking the spot in the ceiling, it will be inaccessible without ice
+      or stone. In logic, ice or stone is required for this pedestal.
 
 - Additionally, DSS cards will be randomly distributed on item pedestals instead of obtained via enemy drops. Enemy drops 
   are replaced with different drops, and drop rate is increased. Trivially easy enemies (worms, zombie variants, other low 
