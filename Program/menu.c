@@ -87,6 +87,18 @@ void optionMenu(struct seed_options *options)
         {
             options->allBossesRequired = !options->allBossesRequired;
         }
+        else if (selection == MENU_DSSRUNSPEED)
+        {
+            options->dssRunSpeed = !options->dssRunSpeed;
+        }
+        else if (selection == MENU_SKIPCUTSCENES)
+        {
+            options->skipCutscenes = !options->skipCutscenes;
+        }
+        else if (selection == MENU_SKIPMAGICITEMTUTORIALS)
+        {
+            options->skipMagicItemTutorials = !options->skipMagicItemTutorials;
+        }
     }
 
     // Flush the input buffer
@@ -143,6 +155,9 @@ static void displayMenu(struct seed_options *options)
     printf("[%s] 13. Randomize which subweapon is in which subweapon location. The numbers of subweapons present in the original game are preserved. Subweapons are only placed in locations that already had a subweapon.\n", options->subweaponShuffle ? checked : unchecked);
     printf("[%s] 14. Disable the Battle Arena's MP drain effect. You will be able to use DSS in the Battle Arena without MP restoring items.\n", options->noMPDrain ? checked : unchecked);
     printf("[%s] 15. All bosses mode. A Last Key will be placed behind every boss except Dracula. All eight will be required. The other Last Key settings will be ignored.\n", options->allBossesRequired ? checked : unchecked);
+    printf("[%s] 16. Patch DSS run speed increase. The Pluto and Griffin DSS card speed increase will apply even when jumping.\n", options->dssRunSpeed ? checked : unchecked);
+    printf("[%s] 17. Skip cutscenes. Cutscenes will proceed without dialogue.\n", options->skipCutscenes ? checked : unchecked);
+    printf("[%s] 18. Skip Magic Item tutorials. Magic Items will no longer provide guidance on item use when obtained.\n", options->skipMagicItemTutorials ? checked : unchecked);
 
     printf("\n>");
 }

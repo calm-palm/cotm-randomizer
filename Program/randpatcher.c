@@ -145,6 +145,24 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
             return 1;
         }
 
+    if (options->dssRunSpeed)
+        if (applyIPS(rom, IPS_DSSRUNSPEED) == 1) {
+            printf("Failed to apply IPS.\n");
+            return 1;
+        }
+
+    if (options->skipCutscenes)
+        if (applyIPS(rom, IPS_SKIPCUTSCENES) == 1) {
+            printf("Failed to apply IPS.\n");
+            return 1;
+        }
+
+    if (options->skipMagicItemTutorials)
+        if (applyIPS(rom, IPS_SKIPMAGICITEMTUTORIALS) == 1) {
+            printf("Failed to apply IPS.\n");
+            return 1;
+        }
+
     // Fix Y-coordinates for magic items and max ups
     graphicsFix(rom);
 

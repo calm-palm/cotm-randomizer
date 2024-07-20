@@ -1,4 +1,4 @@
-# Castlevania: Circle of the Moon Randomizer 1.1
+# Castlevania: Circle of the Moon Randomizer 1.2
 
 Reverse engineering and game program: DevAnj
 Optional patches: fusecavator
@@ -111,7 +111,9 @@ Steam guide article: https://steamcommunity.com/sharedfiles/filedetails/?id=2612
 13. "Subweapon Shuffle": Randomize which subweapon is in which subweapon location. The numbers of subweapons present in the original game are preserved. Subweapons are only placed in locations that already had a subweapon.
 14. "No MP Drain":  Disable the Battle Arena's MP drain effect. You will be able to use DSS in the Battle Arena without MP restoring items.
 15. "All Bosses Required": A Last Key will be placed behind every boss except Dracula. All eight Last Keys will be required. The other Last Key settings will be ignored.
-
+16. "DSS Run Speed": The Pluto and Griffin DSS card speed increase will apply even when jumping.
+17. "Skip Cutscenes": Cutscenes will proceed without dialogue.
+18. "Skip Magic Item Tutorials": Magic Items will no longer provide guidance on item use when obtained.
 
 # Patches:
 
@@ -211,7 +213,7 @@ DSSGlitchFix.ips
 Optional patch created by Fusecavator. Prohibits the DSS glitch.
 You will not be able to update the active effect unless the card combination switched to is obtained. For example, if you switch to another DSS combination
 that you have not obtained during DSS startup, you will still have the effect of the original combination you had selected when you started the DSS
-activation. In addition, you will not be able to increase damage and/or change the element of a summon attack unless you possess the cards you swap to.
+activation. In addition, you will not be able to increase damage and/or change the element of a summon attack unless you possess the cards.
 
 MultiLastKey.ips
 Optional patch created by Fusecavator. Changes game behavior to add instead of set Last Key values, and check for a specific value of Last Keys on the 
@@ -223,8 +225,21 @@ Optional patch created by Fusecavator. Permanent dash effect without double tapp
 ShooterStrength.ips
 Optional patch created by Fusecavator. Increases the Shooter gamemode base strength and strength per level to match Vampirekiller.
 
+DSSRunSpeed.ips
+Optional patch created by Liquid Cat. The Pluto/Griffin DSS card combination will increase speed even during a jump.
+
+SkipCutscenes.ips
+Optional patch created by Liquid Cat. The text printed during cutscenes will not appear.
+
+SkipMagicItemTutorials.ips
+Optional patch created by Liquid Cat. The text printed after Magic Items are obtained will not appear.
 
 # Changes:
+
+1.2:
+  - Added an optional patch by Liquid Cat to apply the Pluto/Griffin speed increase while jumping.
+  - Added an optional patch by Liquid Cat to skip text in cutscenes.
+  - Added an optional patch by Liquid Cat to skip text after Magic Items are obtained.
 
 1.1:
   - Added an optional rule to require that all bosses be defeated. When enabled, the other Last Key settings are ignored, and a Last Key is placed behind every boss except Dracula.

@@ -56,7 +56,7 @@ void graphicsFix(FILE* rom)
                 // If the room UNKNOWN is FFFF, it should be safe... maybe? Good luck everybody!
                 if ((current_room.unkn & 0xFFFF) == 0xFFFF)
                 {
-                    printf("Changing UNKNOWN for room %i %i from %x to 0xA.\n", area_index, room_index, current_room.unkn & 0xFFFF);
+                    //printf("Changing UNKNOWN for room %i %i from %x to 0xA.\n", area_index, room_index, current_room.unkn & 0xFFFF);
                     current_room.unkn = ROOM_TYPE_MAGICITEM;
                     setRoomFromIndices(rom, area_index, room_index, current_room);
                 }

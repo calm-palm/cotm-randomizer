@@ -21,6 +21,9 @@ struct seed_options {
     bool subweaponShuffle;
     bool noMPDrain;
     bool allBossesRequired;
+    bool dssRunSpeed;
+    bool skipCutscenes;
+    bool skipMagicItemTutorials;
 };
 
 #endif

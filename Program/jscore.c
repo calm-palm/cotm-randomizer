@@ -11,7 +11,7 @@
 #include "randpatcher.h"
 
 const char* cotmr_core_version() {
-    return "1-1";
+    return "1-2";
 }
 
 // opt,id,type,shortName,Description,default
@@ -34,7 +34,10 @@ const char* cotmr_option_list() {
            "opt,13,bool,countdown,Countdown,0\n"
            "opt,14,bool,subShuffle,Subweapon Shuffle,0\n"
            "opt,15,bool,noMPDrain,Disable Battle Arena MP Drain,0\n"
-           "opt,16,bool,allBosses,Require All Bosses,0\n";
+           "opt,16,bool,allBosses,Require All Bosses,0\n"
+           "opt,17,bool,dssRunSpeed,DSS Pluto & Griffin Run Speed in Air,0\n"
+           "opt,18,bool,skipCutscenes,Skip Cutscene Dialogue,0\n"
+           "opt,19,bool,skipMagicItemTutorials,Skip Magic Item Tutorials,0\n";
 }
 
 static void set_option_val(struct seed_options *options, int opt, int val) {
@@ -90,6 +93,15 @@ static void set_option_val(struct seed_options *options, int opt, int val) {
         case 16:
             options->allBossesRequired = val;
             break;
+        case 17:
+            options->dssRunSpeed = val;
+            break;
+        case 18:
+            options->skipCutscenes = val;
+            break;
+        case 19:
+            options->skipMagicItemTutorials = val;
+            break;
     }
 }
 
@@ -105,6 +117,9 @@ int cotmr_randomize(int seed, char* option_str) {
         false,
         1,
         1,
+        false,
+        false,
+        false,
         false,
         false,
         false,

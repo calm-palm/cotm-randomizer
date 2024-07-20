@@ -88,3 +88,12 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 
 // Optional patch created by Fusecavator. Disables the Battle Arena's MP drain effect.
 #define IPS_NOMPDRAIN "ips/NoMPDrain.ips"
+
+// Optional patch created by Liquid Cat. The Pluto/Griffin DSS card combination will increase speed even during a jump.
+#define IPS_DSSRUNSPEED "ips/DSSRunSpeed.ips"
+
+// Optional patch created by Liquid Cat. The text printed during cutscenes will not appear.
+#define IPS_SKIPCUTSCENES "ips/SkipCutscenes.ips"
+
+// Optional patch created by Liquid Cat. The text printed after Magic Items are obtained will not appear.
+#define IPS_SKIPMAGICITEMTUTORIALS "ips/SkipMagicItemTutorials.ips"
