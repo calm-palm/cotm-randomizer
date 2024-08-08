@@ -16,7 +16,7 @@ int main (int argc, char *argv[])
     FILE *source_rom;
     FILE *rom;
     FILE *seed;
-
+    bool headless;
     char buffer[BUFFER_SIZE];
     size_t bytes_read;
 
@@ -46,17 +46,25 @@ int main (int argc, char *argv[])
     };
 
     // Validate program is being run with an input ROM
-    if (argc != 2)
+    if (argc != 2) && (argc != 3)
     {
         printf("Incorrect syntax.\nSyntax example: .\\rando.exe <ROM Name>.gba\nAlternatively, drag the ROM onto the executable.\nPress enter to close.\n");
         getchar();
         return 1;
     }
-
+    if (argc == 3)
+    {
+        if (strcmp(argv[3], "headless") != 0)
+        {
+            headless = true
+        }
+    }
     // Print a little credits line
     printf("Castlevania: Circle of the Moon Randomizer\nReverse engineering and game program: DevAnj\nOptional patches: fusecavator\nRandomizer logic and patch program: spooky\nEmotional support: Circle of the Moon Speedrunning Discord @ https://discord.gg/Ae7Qjd5xDu\n");
-    getchar();
-
+    if (!headless)
+    {
+        getchar();
+    }
     // First, copy the original ROM
     source_rom = fopen(argv[1], "rb");
     rom = fopen(OUTPUT_ROM_FILENAME, "wb");
@@ -69,7 +77,10 @@ int main (int argc, char *argv[])
 
     // Open ROM
     printf("Patching ROM %s.\nPress enter to continue or Ctrl + C to exit.\n", OUTPUT_ROM_FILENAME);
-    getchar();
+    if (!headless)
+    {
+        getchar();
+    }
     rom = fopen(OUTPUT_ROM_FILENAME, "r+b");
     if (rom == NULL)
     {
@@ -86,15 +97,23 @@ int main (int argc, char *argv[])
     }
     fscanf(seed, "%u", &randomizer_seed);
     printf("Using seed %u from %s. The seed must be an unsigned integer. If you specified a seed but it is being\nreported as zero, you may have included invalid characters like letters or symbols.\nPress enter to continue or Ctrl + C to exit.\n", randomizer_seed, SEED_FILENAME);
-    getchar();
+    if (!headless)
+    {
+        getchar();
+    }
 
     // Warn that the patch will be overwritten and open for writing
     printf("The randomizer patch will be written to %s.\nWarning: If this file already exists, it will be overwritten. Press enter to continue or Ctrl + C to exit.\n", IPS_RANDOMIZER);
-    getchar();
+    if (!headless)
+    {
+        getchar();
+    }
 
     // Open the menu to allow selecting optional settings and patches
-    optionMenu(&options);
-
+    if (!headless)
+    {
+        optionMenu(&options);
+    }
     int patch_success = randompatch(rom, randomizer_seed, &options);
 
     fclose(rom);
@@ -102,6 +121,9 @@ int main (int argc, char *argv[])
     if(patch_success == 0) {
         printf("Completed successfully.\nPress enter to close.\n");
     }
-    getchar();
+    if (!headless)
+    {
+        getchar();
+    }
     return patch_success;
 }
