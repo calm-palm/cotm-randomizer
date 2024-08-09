@@ -110,26 +110,26 @@ int main (int argc, char *argv[])
     }
     else
     {
-        fscanf(optionsfile, "ignoreCleansing %d", options->ignoreCleansing);
-        fscanf(optionsfile, "applyAutoRunPatch %d", options->applyAutoRunPatch);
-        fscanf(optionsfile, "applyNoDSSGlitchPatch %d", options->applyNoDSSGlitchPatch);
-        fscanf(optionsfile, "applyAllowSpeedDash %d", options->applyAllowSpeedDash);
-        fscanf(optionsfile, "breakIronMaidens %d", options->breakIronMaidens);
-        fscanf(optionsfile, "lastKeyRequired %d", options->lastKeyRequired);
-        fscanf(optionsfile, "lastKeyAvailable %d", options->lastKeyAvailable);
-        fscanf(optionsfile, "applyBuffFamiliars %d", options->applyBuffFamiliars);
-        fscanf(optionsfile, "applyBuffSubweapons %d", options->applyBuffSubweapons);
-        fscanf(optionsfile, "applyShooterStrength %d", options->applyShooterStrength);
-        fscanf(optionsfile, "doNotRandomizeItems %d", options->doNotRandomizeItems);
-        fscanf(optionsfile, "RandomItemHardMode %d", options->RandomItemHardMode);
-        fscanf(optionsfile, "halveDSSCards %d", options->halveDSSCards);
-        fscanf(optionsfile, "countdown %d", options->countdown);
-        fscanf(optionsfile, "subweaponShuffle %d", options->subweaponShuffle);
-        fscanf(optionsfile, "noMPDrain %d", options->noMPDrain);
-        fscanf(optionsfile, "allBossesRequired %d", options->allBossesRequired);
-        fscanf(optionsfile, "dssRunSpeed %d", options->dssRunSpeed);
-        fscanf(optionsfile, "skipCutscenes %d", options->skipCutscenes);
-        fscanf(optionsfile, "skipMagicItemTutorials %d", options->skipMagicItemTutorials);
+        fscanf(optionsfile, "ignoreCleansing %d", *options->ignoreCleansing);
+        fscanf(optionsfile, "applyAutoRunPatch %d", *options->applyAutoRunPatch);
+        fscanf(optionsfile, "applyNoDSSGlitchPatch %d", *options->applyNoDSSGlitchPatch);
+        fscanf(optionsfile, "applyAllowSpeedDash %d", *options->applyAllowSpeedDash);
+        fscanf(optionsfile, "breakIronMaidens %d", *options->breakIronMaidens);
+        fscanf(optionsfile, "lastKeyRequired %d", *options->lastKeyRequired);
+        fscanf(optionsfile, "lastKeyAvailable %d", *options->lastKeyAvailable);
+        fscanf(optionsfile, "applyBuffFamiliars %d", *options->applyBuffFamiliars);
+        fscanf(optionsfile, "applyBuffSubweapons %d", *options->applyBuffSubweapons);
+        fscanf(optionsfile, "applyShooterStrength %d", *options->applyShooterStrength);
+        fscanf(optionsfile, "doNotRandomizeItems %d", *options->doNotRandomizeItems);
+        fscanf(optionsfile, "RandomItemHardMode %d", *options->RandomItemHardMode);
+        fscanf(optionsfile, "halveDSSCards %d", *options->halveDSSCards);
+        fscanf(optionsfile, "countdown %d", *options->countdown);
+        fscanf(optionsfile, "subweaponShuffle %d", *options->subweaponShuffle);
+        fscanf(optionsfile, "noMPDrain %d", *options->noMPDrain);
+        fscanf(optionsfile, "allBossesRequired %d", *options->allBossesRequired);
+        fscanf(optionsfile, "dssRunSpeed %d", *options->dssRunSpeed);
+        fscanf(optionsfile, "skipCutscenes %d", *options->skipCutscenes);
+        fscanf(optionsfile, "skipMagicItemTutorials %d", *options->skipMagicItemTutorials);
     }
     // Open the menu to allow selecting optional settings and patches
     if (!headless){
