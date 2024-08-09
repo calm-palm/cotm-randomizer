@@ -17,6 +17,7 @@ int main (int argc, char *argv[])
     FILE *source_rom;
     FILE *rom;
     FILE *seed;
+    FILE *optionsfile;
     bool headless;
     char buffer[BUFFER_SIZE];
     size_t bytes_read;
