@@ -105,7 +105,7 @@ int main (int argc, char *argv[])
     }
     optionsfile = fopen(OPTIONS_FILENAME, "r");
     if (optionsfile == NULL){
-        printf('No Options file, using default options currently; opening the menu if not headless');
+        printf("No Options file, using default options currently; opening the menu if not headless");
     }
     else
     {
