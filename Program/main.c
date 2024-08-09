@@ -116,7 +116,7 @@ int main (int argc, char *argv[])
         fscanf(optionsfile, "breakIronMaidens %d", options.breakIronMaidens);
         fscanf(optionsfile, "lastKeyRequired %d", options.lastKeyRequired);
         fscanf(optionsfile, "lastKeyAvailable %d", options.lastKeyAvailable);
-        fscanf(optionsfile, "applyBuffFamiliars %d", options.applyBuffFamiliar);
+        fscanf(optionsfile, "applyBuffFamiliars %d", options.applyBuffFamiliars);
         fscanf(optionsfile, "applyBuffSubweapons %d", options.applyBuffSubweapons);
         fscanf(optionsfile, "applyShooterStrength %d", options.applyShooterStrength);
         fscanf(optionsfile, "doNotRandomizeItems %d", options.doNotRandomizeItems);
