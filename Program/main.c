@@ -56,7 +56,7 @@ int main (int argc, char *argv[])
     }
     if (argc == 3){
         if (strcmp(argv[3], "headless") != 0){
-            headless = true
+            headless = true;
         }
     }
     // Print a little credits line
