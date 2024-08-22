@@ -1297,13 +1297,23 @@ static void populateEnemyDrops(int regular_drops[], int rare_drops[], int regula
             rare_drop_chance[i] = 1500 + (rand() % 501);
         }
 
+        /* On All Bosses and Battle Arena Required, the Shinning Armor at 
+        the end of Battle Arena is removed. We compensate for this by giving 
+        Battle Arena Devil a 100% chance to drop Shinning Armor. */
+        else if (i == INDEX_ENEMY_BATTLEARENADEVIL && options->allBossesAndBattleArenaRequired) {
+            regular_drops[i] = INDEX_ITEM_BODY_SHINNINGARMOR;
+            rare_drops[i] = 0;
+
+            regular_drop_chance[i] = 10000;
+            rare_drop_chance[i] = 0;
+        }
+
         /* Low-tier items drop from enemies that are trivial to farm (60 HP 
         or less) on normal drop logic, or enemies under 144 HP on TIM logic. */
         
         /* Logic revised by Malaert64 to remove 
         massive if block checking enemy IDs. */
-        else if ((!options->tieredItemsMode && enemies_data_table[i].hp <= 60) || (options->tieredItemsMode && enemies_data_table[i].hp <= 143))
-        {
+        else if ((!options->tieredItemsMode && enemies_data_table[i].hp <= 60) || (options->tieredItemsMode && enemies_data_table[i].hp <= 143)) {
             /* Low-tier enemy drops. */
             regular_drops[i] = selectDrop(low_items, placed_low_items, NUMBER_LOW_ITEMS, false);
             rare_drops[i] = selectDrop(low_items, placed_low_items, NUMBER_LOW_ITEMS, false);

@@ -103,3 +103,6 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 
 // Optional patch created by Liquid Cat. Changes the behavior of the Roc Wing depending on which other Magic Items have been obtained.
 #define IPS_NERFROCWING "ips/NerfRocWing.ips"
+
+// Patch created by Liquid Cat. Makes Vampire Killer the background music of the Battle Arena, instead of just pure silence.
+#define IPS_BATTLEARENAMUSIC "ips/BattleArenaMusic.ips"
