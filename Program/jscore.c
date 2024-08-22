@@ -11,7 +11,7 @@
 #include "randpatcher.h"
 
 const char* cotmr_core_version() {
-    return "1-3";
+    return "1-4";
 }
 
 // opt,id,type,shortName,Description,default
