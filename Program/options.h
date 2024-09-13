@@ -26,6 +26,7 @@ struct seed_options {
     bool skipCutscenes;
     bool skipMagicItemTutorials;
     bool nerfRocWing;
+    bool battleArenaMusic;
 };
 
 #endif

@@ -1,4 +1,4 @@
-# Castlevania: Circle of the Moon Randomizer 1.4.1
+# Castlevania: Circle of the Moon Randomizer 1.4.2
 
 Reverse engineering and game program: DevAnj
 Optional and/or quality-of-life patches: Fusecavator and Liquid Cat
@@ -117,6 +117,7 @@ Steam guide article: https://steamcommunity.com/sharedfiles/filedetails/?id=2612
 18. "Skip Cutscenes": Cutscenes will proceed without dialogue.
 19. "Skip Magic Item Tutorials": Magic Items will no longer provide guidance on item use when obtained.
 20. "Nerf Roc Wing": Roc Wing will be less effective while Double or Kick Boots have not yet been obtained. Read the guide below for details.
+21. "Add Battle Arena Music": Music will be added to the Battle Arena. This could cause framerate drops in certain rooms.
 
 # "Nerf Roc Wing" guide:
 
@@ -358,6 +359,9 @@ BattleArenaMusic.ips
 Patch created by Liquid Cat. Makes Vampire Killer the background music of the Battle Arena, instead of just pure silence.
 
 # Changes:
+
+1.4.2:
+  - Added a toggle to enable or disable the patch to add music to the Battle Arena.
 
 1.4.1:
   - Malaert64 added Liquid Cat's BattleArenaMusic.ips patch.

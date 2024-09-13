@@ -11,7 +11,7 @@
 #include "randpatcher.h"
 
 const char* cotmr_core_version() {
-    return "1-4";
+    return "1-4-2";
 }
 
 // opt,id,type,shortName,Description,default
@@ -39,7 +39,8 @@ const char* cotmr_option_list() {
            "opt,18,bool,dssRunSpeed,DSS Pluto and Griffin Run Speed in Air,0\n"
            "opt,19,bool,skipCutscenes,Skip Cutscene Dialogue,0\n"
            "opt,20,bool,skipMagicItemTutorials,Skip Magic Item Tutorials,0\n"
-           "opt,21,bool,nerfRocWing,Nerf Roc Wing,0\n";
+           "opt,21,bool,nerfRocWing,Nerf Roc Wing,0\n"
+           "opt,22,bool,battleArenaMusic,Add Music to Battle Arena,0\n";
 }
 
 static void set_option_val(struct seed_options *options, int opt, int val) {
@@ -110,6 +111,9 @@ static void set_option_val(struct seed_options *options, int opt, int val) {
         case 21:
             options->nerfRocWing = val;
             break;
+        case 22:
+            options->battleArenaMusic = val;
+            break;
     }
 }
 
@@ -139,7 +143,8 @@ int cotmr_randomize(int seed, char* option_str) {
         false, // dssRunSpeed
         false, // skipCutscenes
         false, // skipMagicItemTutorials
-        false // nerfRocWing
+        false, // nerfRocWing
+        false // battleArenaMusic
     };
 
     param_pos = strtok(option_str,",");

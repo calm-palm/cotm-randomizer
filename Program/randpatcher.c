@@ -51,8 +51,7 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
     || applyIPS(rom, IPS_CANDLEFIX) || applyIPS(rom, IPS_BLOCKFIX)
     || applyIPS(rom, IPS_MPCOMBOFIX) || applyIPS(rom, IPS_GAMECLEARBYPASS) 
     || applyIPS(rom, IPS_MAPEDITS) || applyIPS(rom, IPS_RANDOMIZER) == 1 
-    || applyIPS(rom, IPS_DEMO_FORCE_FIRST) == 1 || applyIPS(rom, IPS_ALLOW_ALWAYS_DROP) == 1
-    || applyIPS(rom, IPS_BATTLEARENAMUSIC))
+    || applyIPS(rom, IPS_DEMO_FORCE_FIRST) == 1 || applyIPS(rom, IPS_ALLOW_ALWAYS_DROP) == 1)
     {
         printf("Failed to apply IPS.\n");
         return 1;
@@ -173,6 +172,12 @@ int randompatch(FILE* rom, unsigned int randomizer_seed, struct seed_options *op
 
     if (options->nerfRocWing)
         if (applyIPS(rom, IPS_NERFROCWING) == 1) {
+            printf("Failed to apply IPS.\n");
+            return 1;
+        }
+
+    if (options->battleArenaMusic)
+        if (applyIPS(rom, IPS_BATTLEARENAMUSIC) == 1) {
             printf("Failed to apply IPS.\n");
             return 1;
         }

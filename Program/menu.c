@@ -107,6 +107,10 @@ void optionMenu(struct seed_options *options)
         {
             options->nerfRocWing = !options->nerfRocWing;
         }
+        else if (selection == MENU_BATTLEARENAMUSIC)
+        {
+            options->battleArenaMusic = !options->battleArenaMusic;
+        }
     }
 
     // Flush the input buffer
@@ -168,6 +172,7 @@ static void displayMenu(struct seed_options *options)
     printf("[%s] 18. Skip cutscenes. Cutscenes will proceed without dialogue.\n", options->skipCutscenes ? checked : unchecked);
     printf("[%s] 19. Skip Magic Item tutorials. Magic Items will no longer provide guidance on item use when obtained.\n", options->skipMagicItemTutorials ? checked : unchecked);
     printf("[%s] 20. Nerf the Roc Wing. Roc Wing will be less effective while Double or Kick Boots have not yet been obtained. Read the guide for details.\n", options->nerfRocWing ? checked : unchecked);
+    printf("[%s] 21. Add Battle Arena Music. Music will be added to the Battle Arena. This could cause framerate drops in certain rooms.\n", options->battleArenaMusic ? checked : unchecked);
 
     printf("\n>");
 }

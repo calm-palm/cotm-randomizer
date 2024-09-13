@@ -49,7 +49,8 @@ int main (int argc, char *argv[])
         false, // dssRunSpeed
         false, // skipCutscenes
         false, // skipMagicItemTutorials
-        false // nerfRocWing
+        false, // nerfRocWing
+        false // battleArenaMusic
     };
 
     // Validate program is being run with an input ROM
@@ -157,6 +158,8 @@ int main (int argc, char *argv[])
         options.skipMagicItemTutorials = boolstorage;
         fscanf(optionsfile, "nerfRocWing %d #boolean\n", &boolstorage);
         options.nerfRocWing = boolstorage;
+        fscanf(optionsfile, "battleArenaMusic %d #boolean\n", &boolstorage);
+        options.battleArenaMusic = boolstorage;
     }
     // Open the menu to allow selecting optional settings and patches
     if (!headless){

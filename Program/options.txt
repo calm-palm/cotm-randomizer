@@ -20,3 +20,4 @@ dssRunSpeed 0 #boolean
 skipCutscenes 0 #boolean
 skipMagicItemTutorials 0 #boolean
 nerfRocWing 0 #boolean
+battleArenaMusic 0 #boolean
